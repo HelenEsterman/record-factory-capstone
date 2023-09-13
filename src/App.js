@@ -1,4 +1,5 @@
+import { NewEpAlbum } from './components/"forms"/NewEpAlbum';
 
 export const App = () => {
-  return <div>Hello World!</div>
-}
+  return <div>{<NewEpAlbum />}</div>;
+};
