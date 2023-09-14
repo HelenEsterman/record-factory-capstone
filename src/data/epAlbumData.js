@@ -8,3 +8,7 @@ export const postNewEpAlbum = (newEpAlbum) => {
   };
   return fetch("http://localhost:8088/epAlbums", postOptions);
 };
+
+export const getAllEpAlbums = () => {
+  return fetch("http://localhost:8088/epAlbums").then((res) => res.json());
+};
