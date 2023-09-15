@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
 import { postNewLpAlbum } from "../../data/lpAlbumData";
-
-//TODO: entire component complete, but still need to add rerendering of page when button is clicked (want to reroute to record archive page after)
+import { useNavigate } from "react-router-dom";
 
 export const NewLpAlbum = () => {
+  const navigate = useNavigate();
   const [genres, setGenres] = useState([]);
   const [newLpAlbum, setNewLpAlbum] = useState({
     name: "",
@@ -62,7 +62,9 @@ export const NewLpAlbum = () => {
       genreId: parseInt(newLpAlbum.genreId),
       userId: newLpAlbum.userId,
     };
-    postNewLpAlbum(lpAlbumCopy);
+    postNewLpAlbum(lpAlbumCopy).then(() => {
+      navigate("/recordArchive");
+    });
   };
 
   return (

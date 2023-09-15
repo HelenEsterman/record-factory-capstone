@@ -1,23 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-import { NewEpAlbum } from './components/"forms"/NewEpAlbum';
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
-import { NewLpAlbum } from './components/"forms"/NewLpAlbum';
-import { RecordArchive } from "./components/recordArchive/RecordArchive";
-import { Welcome } from "./components/welcome/Welcome";
-import { NavBar } from "./components/navbar/NavBar";
-import { AlbumType } from './components/"forms"/AlbumType';
+import { Authorized } from "./views/Authorized";
+import { ApplicationViews } from "./views/ApplicationViews";
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/" element={<Welcome />} />
-      <Route path="/createNewAlbum" element={<AlbumType />} />
-      <Route path="/createEpAlbum" element={<NewEpAlbum />} />
-      <Route path="/createLpAlbum" element={<NewLpAlbum />} />
-      <Route path="/recordArchive" element={<RecordArchive />} />
+      <Route
+        path="*"
+        element={
+          <Authorized>
+            <ApplicationViews />
+          </Authorized>
+        }
+      />
     </Routes>
   );
 };
