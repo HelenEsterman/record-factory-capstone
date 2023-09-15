@@ -1,0 +1,9 @@
+.album-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.album {
+  flex-basis: 25%;
+}
