@@ -80,7 +80,7 @@ export const Register = (props) => {
             />
           </div>
         </fieldset>
-        <fieldset className="auth-fieldset">
+        {/* <fieldset className="auth-fieldset">
           <div>
             <input
               onChange={updateUser}
@@ -91,7 +91,7 @@ export const Register = (props) => {
               required
             />
           </div>
-        </fieldset>
+        </fieldset> */}
         <fieldset className="auth-fieldset">
           <div>
             <button type="submit">Register</button>

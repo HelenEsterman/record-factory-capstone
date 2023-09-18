@@ -12,3 +12,9 @@ export const postNewLpAlbum = (newLpAlbum) => {
 export const getAllLpAlbums = () => {
   return fetch("http://localhost:8088/lpAlbums").then((res) => res.json());
 };
+
+export const getLpAlbumsById = (albumId) => {
+  return fetch(`http://localhost:8088/lpAlbums?id=${albumId}`).then((res) =>
+    res.json()
+  );
+};
