@@ -1,11 +1,10 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "../components/navbar/NavBar";
 import { Welcome } from "../components/welcome/Welcome";
-import { AlbumType } from '../components/"forms"/AlbumType';
-import { NewEpAlbum } from '../components/"forms"/NewEpAlbum';
-import { NewLpAlbum } from '../components/"forms"/NewLpAlbum';
+import { NewAlbum } from '../components/"forms"/NewAlbum';
 import { RecordArchive } from "../components/recordArchive/RecordArchive";
 import { AlbumDetails } from "../components/recordArchive/albumDetails";
+import { EditAlbum } from '../components/"forms"/EditAlbum';
 
 export const ApplicationViews = () => {
   return (
@@ -19,13 +18,11 @@ export const ApplicationViews = () => {
         }
       >
         <Route index element={<Welcome />} />
-        <Route path="/createAlbum" element={<AlbumType />} />
-        <Route path="/createEpAlbum" element={<NewEpAlbum />} />
-        <Route path="/createLpAlbum" element={<NewLpAlbum />} />
+        <Route path="/createAlbum" element={<NewAlbum />} />
         <Route path="/recordArchive">
-          {/*TODO: gotta finish adding routes to album details while using use params */}
           <Route index element={<RecordArchive />} />
           <Route path=":albumId" element={<AlbumDetails />} />
+          <Route path=":albumId/edit" element={<EditAlbum />} />
         </Route>
       </Route>
     </Routes>

@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getEpAlbumsById } from "../../data/epAlbumData";
-import { getLpAlbumsById } from "../../data/lpAlbumData";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteAlbum, getAlbumsById } from "../../data/albumData";
 import { getGenres } from "../../data/genreData";
 import "./albumDetails.css";
 
 export const AlbumDetails = () => {
-  const [epAlbum, setEpAlbum] = useState([]);
-  const [lpAlbum, setLpAlbum] = useState([]);
+  const [album, setAlbum] = useState([]);
   const [userId, setUserId] = useState([]);
   const [genres, setGenres] = useState([]);
   const { albumId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getEpAlbumsById(albumId).then((epAlbumObj) => {
-      setEpAlbum(epAlbumObj);
-    });
-    getLpAlbumsById(albumId).then((lpAlbumObj) => {
-      setLpAlbum(lpAlbumObj);
+    getAlbumsById(albumId).then((albumObj) => {
+      setAlbum(albumObj);
     });
     getGenres().then((genreArray) => {
       setGenres(genreArray);
@@ -27,56 +23,33 @@ export const AlbumDetails = () => {
     setUserId(userId);
   }, [albumId]);
 
-  if (epAlbum[0]?.userId === userId) {
-    const genreObj = genres.find((genre) => genre.id === epAlbum[0].genreId);
-    return (
-      <div>
-        <p>"{epAlbum[0].name}"</p>
-        <p>{epAlbum[0].artistName}</p>
-        <img
-          src={epAlbum[0].imgUrl}
-          alt="album cover"
-          width={200}
-          height={200}
-        />
-        <ul className="list-unstyled">
-          <li>"{epAlbum[0].song1}"</li>
-          <li>"{epAlbum[0].song2}"</li>
-          <li>"{epAlbum[0].song3}"</li>
-          <li>"{epAlbum[0].song4}"</li>
-          <li>"{epAlbum[0].song5}"</li>
-          <li>"{epAlbum[0].song6}"</li>
-        </ul>
-        <p>{genreObj?.name}</p>
+  const handleDelete = () => {
+    deleteAlbum(albumId).then(navigate("/recordArchive"));
+  };
+
+  const genreObj = genres.find((genre) => genre.id === album.genreId);
+  return (
+    <>
+      <div className="album-detail-container">
+        <img src={album.imgUrl} alt="album cover" width={500} height={500} />
+        <div className="text-overlay">
+          <p>"{album.name}"</p>
+          <p>{album.artistName}</p>
+          <ul className="list-unstyled">
+            <li>"{album.song1}"</li>
+            <li>"{album.song2}"</li>
+            <li>"{album.song3}"</li>
+            <li>"{album.song4}"</li>
+            <li>"{album.song5}"</li>
+            <li>"{album.song6}"</li>
+          </ul>
+          <p>{genreObj?.name}</p>
+        </div>
       </div>
-    );
-  } else if (lpAlbum[0]?.userId === userId) {
-    const genreObj = genres.find((genre) => genre.id === lpAlbum[0].genreId);
-    return (
-      <div>
-        <p>"{lpAlbum[0].name}"</p>
-        <p>{lpAlbum[0].artistName}</p>
-        <img
-          src={lpAlbum[0].imgUrl}
-          alt="album cover"
-          width={200}
-          height={200}
-        />
-        <ul className="list-unstyled">
-          <li>"{lpAlbum[0].song1}"</li>
-          <li>"{lpAlbum[0].song2}"</li>
-          <li>"{lpAlbum[0].song3}"</li>
-          <li>"{lpAlbum[0].song4}"</li>
-          <li>"{lpAlbum[0].song5}"</li>
-          <li>"{lpAlbum[0].song6}"</li>
-          <li>"{lpAlbum[0].song7}"</li>
-          <li>"{lpAlbum[0].song8}"</li>
-          <li>"{lpAlbum[0].song9}"</li>
-          <li>"{lpAlbum[0].song10}"</li>
-          <li>"{lpAlbum[0].song11}"</li>
-        </ul>
-        <p>{genreObj?.name}</p>
-      </div>
-    );
-  }
+      <button onClick={() => navigate(`/recordArchive/${album.id}/edit`)}>
+        Edit Album
+      </button>
+      <button onClick={handleDelete}>Delete Album</button>
+    </>
+  );
 };

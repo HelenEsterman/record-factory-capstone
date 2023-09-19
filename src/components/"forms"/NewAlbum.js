@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
-import { postNewEpAlbum } from "../../data/epAlbumData";
+import { postNewAlbum } from "../../data/albumData";
 import { useNavigate } from "react-router-dom";
 
-export const NewEpAlbum = () => {
+export const NewAlbum = () => {
   const navigate = useNavigate();
   const [genres, setGenres] = useState([]);
-  const [newEpAlbum, setNewEpAlbum] = useState({
+  const [newAlbum, setNewAlbum] = useState({
     name: "",
     imgUrl: "",
     artistName: "",
@@ -26,49 +26,49 @@ export const NewEpAlbum = () => {
     });
     const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
     const userId = userObj.id;
-    const epAlbumCopy = { ...newEpAlbum };
-    epAlbumCopy.userId = userId;
-    setNewEpAlbum(epAlbumCopy);
+    const albumCopy = { ...newAlbum };
+    albumCopy.userId = userId;
+    setNewAlbum(albumCopy);
   }, []);
 
   const handleInputStateChanges = (event) => {
-    const epAlbumCopy = { ...newEpAlbum };
-    epAlbumCopy[event.target.name] = event.target.value;
-    setNewEpAlbum(epAlbumCopy);
+    const albumCopy = { ...newAlbum };
+    albumCopy[event.target.name] = event.target.value;
+    setNewAlbum(albumCopy);
   };
 
-  const handleSavingEpAlbum = (event) => {
+  const handleSavingAlbum = (event) => {
     event.preventDefault();
-    const epAlbumCopy = {
-      name: newEpAlbum.name,
-      imgUrl: newEpAlbum.imgUrl,
-      artistName: newEpAlbum.artistName,
-      song1: newEpAlbum.song1,
-      song2: newEpAlbum.song2,
-      song3: newEpAlbum.song3,
-      song4: newEpAlbum.song4,
-      song5: newEpAlbum.song5,
-      song6: newEpAlbum.song6,
-      genreId: parseInt(newEpAlbum.genreId),
-      userId: newEpAlbum.userId,
+    const albumCopy = {
+      name: newAlbum.name,
+      imgUrl: newAlbum.imgUrl,
+      artistName: newAlbum.artistName,
+      song1: newAlbum.song1,
+      song2: newAlbum.song2,
+      song3: newAlbum.song3,
+      song4: newAlbum.song4,
+      song5: newAlbum.song5,
+      song6: newAlbum.song6,
+      genreId: parseInt(newAlbum.genreId),
+      userId: newAlbum.userId,
     };
-    postNewEpAlbum(epAlbumCopy).then(() => {
+    postNewAlbum(albumCopy).then(() => {
       navigate("/recordArchive");
     });
   };
 
   return (
-    <div className="ep-album-form">
+    <div className="album-form">
       <form>
-        <h2 className="ep-album-title">Create Your Album</h2>
+        <h2 className="album-title">Create Your Album</h2>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Name of Your Album
               <input
                 type="text"
                 name="name"
-                value={newEpAlbum.name}
+                value={newAlbum.name}
                 placeholder="enter album name"
                 onChange={handleInputStateChanges}
               />
@@ -76,13 +76,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Album Cover Image URL
               <input
                 type="text"
                 name="imgUrl"
-                value={newEpAlbum.imgUrl}
+                value={newAlbum.imgUrl}
                 placeholder="www.example.com"
                 onChange={handleInputStateChanges}
               />
@@ -90,13 +90,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Artist Name
               <input
                 type="text"
                 name="artistName"
-                value={newEpAlbum.artistName}
+                value={newAlbum.artistName}
                 placeholder="enter artist name"
                 onChange={handleInputStateChanges}
               />
@@ -104,13 +104,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 1
               <input
                 type="text"
                 name="song1"
-                value={newEpAlbum.song1}
+                value={newAlbum.song1}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -118,13 +118,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 2
               <input
                 type="text"
                 name="song2"
-                value={newEpAlbum.song2}
+                value={newAlbum.song2}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -132,13 +132,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 3
               <input
                 type="text"
                 name="song3"
-                value={newEpAlbum.song3}
+                value={newAlbum.song3}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -146,13 +146,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 4
               <input
                 type="text"
                 name="song4"
-                value={newEpAlbum.song4}
+                value={newAlbum.song4}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -160,13 +160,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 5
               <input
                 type="text"
                 name="song5"
-                value={newEpAlbum.song5}
+                value={newAlbum.song5}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -174,13 +174,13 @@ export const NewEpAlbum = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <label>
               Song 6
               <input
                 type="text"
                 name="song6"
-                value={newEpAlbum.song6}
+                value={newAlbum.song6}
                 placeholder="enter song here"
                 onChange={handleInputStateChanges}
               />
@@ -189,7 +189,7 @@ export const NewEpAlbum = () => {
         </fieldset>
 
         <fieldset>
-          <div className="ep-album-info">
+          <div className="album-info">
             <div>Genre</div>
             <select name="genreId" onChange={handleInputStateChanges}>
               <option value={0} key={0}>
@@ -205,7 +205,7 @@ export const NewEpAlbum = () => {
             </select>
           </div>
         </fieldset>
-        <button className="save-btn" onClick={handleSavingEpAlbum}>
+        <button className="save-btn" onClick={handleSavingAlbum}>
           Create Album
         </button>
       </form>
