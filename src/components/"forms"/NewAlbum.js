@@ -39,22 +39,38 @@ export const NewAlbum = () => {
 
   const handleSavingAlbum = (event) => {
     event.preventDefault();
-    const albumCopy = {
-      name: newAlbum.name,
-      imgUrl: newAlbum.imgUrl,
-      artistName: newAlbum.artistName,
-      song1: newAlbum.song1,
-      song2: newAlbum.song2,
-      song3: newAlbum.song3,
-      song4: newAlbum.song4,
-      song5: newAlbum.song5,
-      song6: newAlbum.song6,
-      genreId: parseInt(newAlbum.genreId),
-      userId: newAlbum.userId,
-    };
-    postNewAlbum(albumCopy).then(() => {
-      navigate("/recordArchive");
-    });
+    if (
+      newAlbum.name !== "" &&
+      newAlbum.imgUrl !== "" &&
+      newAlbum.artistName !== "" &&
+      newAlbum.song1 !== "" &&
+      newAlbum.song2 !== "" &&
+      newAlbum.song3 !== "" &&
+      newAlbum.song4 !== "" &&
+      newAlbum.song5 !== "" &&
+      newAlbum.song6 !== "" &&
+      newAlbum.genreId > 0 &&
+      newAlbum.userId > 0
+    ) {
+      const albumCopy = {
+        name: newAlbum.name,
+        imgUrl: newAlbum.imgUrl,
+        artistName: newAlbum.artistName,
+        song1: newAlbum.song1,
+        song2: newAlbum.song2,
+        song3: newAlbum.song3,
+        song4: newAlbum.song4,
+        song5: newAlbum.song5,
+        song6: newAlbum.song6,
+        genreId: parseInt(newAlbum.genreId),
+        userId: newAlbum.userId,
+      };
+      postNewAlbum(albumCopy).then(() => {
+        navigate("/recordArchive");
+      });
+    } else {
+      window.alert("Input field empty, must complete form");
+    }
   };
 
   return (
