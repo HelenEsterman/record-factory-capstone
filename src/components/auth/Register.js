@@ -50,10 +50,9 @@ export const Register = (props) => {
   };
 
   return (
-    <main className="auth-container">
+    <main className="auth-container center-block">
       <form className="auth-form" onSubmit={handleRegister}>
-        <h1 className="header">Record Factory</h1>{" "}
-        {/*TODO: change this when name is finalized */}
+        <h1 className="header">Ronnie and The Record Factory</h1>
         <h2>Please Register</h2>
         <fieldset className="auth-fieldset">
           <div>
@@ -80,21 +79,11 @@ export const Register = (props) => {
             />
           </div>
         </fieldset>
-        {/* <fieldset className="auth-fieldset">
-          <div>
-            <input
-              onChange={updateUser}
-              type="number"
-              id="cohort"
-              className="auth-form-input"
-              placeholder="Cohort #"
-              required
-            />
-          </div>
-        </fieldset> */}
         <fieldset className="auth-fieldset">
           <div>
-            <button type="submit">Register</button>
+            <button type="submit" className="sign-in-btn">
+              Register
+            </button>
           </div>
         </fieldset>
       </form>

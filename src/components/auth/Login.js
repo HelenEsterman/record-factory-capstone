@@ -29,11 +29,10 @@ export const Login = () => {
   };
 
   return (
-    <main className="auth-container">
+    <main className="auth-container center-block">
       <section>
         <form className="auth-form" onSubmit={handleLogin}>
-          <h1 className="header">Record Factory</h1>{" "}
-          {/*TODO: change this when name is finalized */}
+          <h1 className="header">Ronnie and The Record Factory</h1>
           <h2>Please sign in</h2>
           <fieldset className="auth-fieldset">
             <div>
@@ -50,13 +49,17 @@ export const Login = () => {
           </fieldset>
           <fieldset className="auth-fieldset">
             <div>
-              <button type="submit">Sign in</button>
+              <button type="submit" className="sign-in-btn">
+                Sign in
+              </button>
             </div>
           </fieldset>
         </form>
       </section>
       <section className="register-link">
-        <Link to="/register">Not a member yet?</Link>
+        <Link to="/register" className="register-link">
+          Not a member yet?
+        </Link>
       </section>
     </main>
   );

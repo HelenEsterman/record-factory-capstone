@@ -1,12 +1,10 @@
-/* TODO not real NavBar.css taken from honey-raes to use as place holder to visualize and attach nav bar atm*/
-
 .nav-bar {
   display: flex;
   flex-wrap: nowrap;
-  background-color: gray;
   margin: 0;
   width: 100%;
   padding: 0.5rem;
+  justify-content: space-between;
 }
 
 .navbar-item {
@@ -15,12 +13,15 @@
   text-align: center;
   color: black;
   text-decoration: none;
+  flex-basis: 35%;
 }
 
 .navbar-link {
   text-decoration: none;
   font-family: "Quicksand", sans-serif;
   letter-spacing: 1px;
+  display: none;
+  color: rgb(245, 187, 226);
 }
 
 .navbar-logout {
@@ -28,5 +29,13 @@
 }
 
 .navbar-link:hover {
-  color: var(--primary);
+  color: rgb(134, 196, 196);
+}
+
+.navbar-item:hover .navbar-link {
+  display: block;
+}
+
+.image {
+  border-radius: 55%;
 }

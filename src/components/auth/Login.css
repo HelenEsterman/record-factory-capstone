@@ -1,28 +1,49 @@
 .auth-container {
-  border: 1px solid gray;
   margin: 3rem 15rem;
-  padding: 2rem;
-  border-radius: 1rem;
+  margin-top: 100px;
+  padding: 7rem;
+  height: 100vh;
+  background-color: blue;
 }
 
 .header {
   font-size: 2rem;
+  font-family: "Satisfy", sans-serif;
+  color: rgb(245, 187, 226);
+}
+
+.auth-form > h1 {
+  font-size: 3rem;
+  text-align: center;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Zeyada", sans-serif;
+  color: rgb(245, 187, 226);
 }
 
 .auth-form-input {
   padding: 0.25rem;
+  font-family: sans-serif;
+  border-radius: 500rem;
+  background-color: rgb(134, 196, 196);
 }
 
 .register-link {
   text-align: center;
+  text-decoration: none;
+  color: rgb(134, 196, 196);
 }
 
 .auth-fieldset {
   margin: 0.25rem 0rem;
+  font-family: sans-serif;
+}
+
+.sign-in-btn {
+  border-radius: 500rem;
+  background-color: rgb(245, 187, 226);
 }
