@@ -1,9 +1,30 @@
+.records-container {
+  margin-top: 15px;
+  margin-left: 155px;
+}
+
 .album-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  position: center;
 }
 
 .album {
-  flex-basis: 25%;
+  flex-basis: 30%;
+  margin: 15px;
+  padding: 0.1rem;
+}
+
+.album-name {
+  color: rgb(245, 187, 226);
+  font-size: 20px;
+  font-family: "Satisfy", sans-serif;
+  font-style: italic;
+  margin-top: 25px;
+}
+
+.album-image {
+  border-radius: 1rem;
+  box-shadow: 7px 7px 9px rgb(134, 196, 196);
 }

@@ -16,8 +16,8 @@ export const RecordArchive = () => {
     setUserId(userId);
   }, []);
   return (
-    <div>
-      <h2>Record Archive</h2>
+    <div className="records-container center-block">
+      {/* <h2>Record Archive</h2> */}
       <div className="album-list">
         {albums.map((albumObj) => {
           if (albumObj.userId === userId) {
@@ -29,10 +29,11 @@ export const RecordArchive = () => {
                     alt="album covers"
                     width={200}
                     height={200}
+                    className="album-image"
                   />
                 </Link>
 
-                <div>"{albumObj.name}"</div>
+                <div className="album-name">"{albumObj.name}"</div>
               </div>
             );
           }

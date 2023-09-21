@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
 import { postNewAlbum } from "../../data/albumData";
 import { useNavigate } from "react-router-dom";
+import "./NewAlbum.css";
 
 export const NewAlbum = () => {
   const navigate = useNavigate();
@@ -75,13 +76,14 @@ export const NewAlbum = () => {
 
   return (
     <div className="album-form">
-      <form>
-        <h2 className="album-title">Create Your Album</h2>
+      <form className="album-form-container">
+        {/* <h2 className="album-title">Create Your Album</h2> */}
         <fieldset>
           <div className="album-info">
             <label>
               Name of Your Album
               <input
+                className="input-field"
                 type="text"
                 name="name"
                 value={newAlbum.name}
@@ -96,6 +98,7 @@ export const NewAlbum = () => {
             <label>
               Album Cover Image URL
               <input
+                className="input-field"
                 type="text"
                 name="imgUrl"
                 value={newAlbum.imgUrl}
@@ -110,6 +113,7 @@ export const NewAlbum = () => {
             <label>
               Artist Name
               <input
+                className="input-field"
                 type="text"
                 name="artistName"
                 value={newAlbum.artistName}
@@ -124,6 +128,7 @@ export const NewAlbum = () => {
             <label>
               Song 1
               <input
+                className="input-field"
                 type="text"
                 name="song1"
                 value={newAlbum.song1}
@@ -138,6 +143,7 @@ export const NewAlbum = () => {
             <label>
               Song 2
               <input
+                className="input-field"
                 type="text"
                 name="song2"
                 value={newAlbum.song2}
@@ -152,6 +158,7 @@ export const NewAlbum = () => {
             <label>
               Song 3
               <input
+                className="input-field"
                 type="text"
                 name="song3"
                 value={newAlbum.song3}
@@ -166,6 +173,7 @@ export const NewAlbum = () => {
             <label>
               Song 4
               <input
+                className="input-field"
                 type="text"
                 name="song4"
                 value={newAlbum.song4}
@@ -180,6 +188,7 @@ export const NewAlbum = () => {
             <label>
               Song 5
               <input
+                className="input-field"
                 type="text"
                 name="song5"
                 value={newAlbum.song5}
@@ -194,6 +203,7 @@ export const NewAlbum = () => {
             <label>
               Song 6
               <input
+                className="input-field"
                 type="text"
                 name="song6"
                 value={newAlbum.song6}
@@ -206,14 +216,22 @@ export const NewAlbum = () => {
 
         <fieldset>
           <div className="album-info">
-            <div>Genre</div>
-            <select name="genreId" onChange={handleInputStateChanges}>
+            <label>Genre</label>
+            <select
+              name="genreId"
+              onChange={handleInputStateChanges}
+              className="genre-choices"
+            >
               <option value={0} key={0}>
                 Pick Your Genre
               </option>
               {genres.map((genre) => {
                 return (
-                  <option value={genre.id} key={genre.id}>
+                  <option
+                    className="input-field"
+                    value={genre.id}
+                    key={genre.id}
+                  >
                     {genre.name}
                   </option>
                 );

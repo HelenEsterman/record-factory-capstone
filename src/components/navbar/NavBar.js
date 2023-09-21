@@ -30,7 +30,7 @@ export const NavBar = () => {
         </Link>
       </li>
       {localStorage.getItem("record_factory_user") ? (
-        <li className="navbar-item navbar-logout">
+        <li className="navbar-item">
           <img
             className="image"
             src="https://media.tenor.com/GLVCw4f0GVIAAAAC/tom-sad.gif"

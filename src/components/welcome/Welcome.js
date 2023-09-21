@@ -5,7 +5,7 @@ export const Welcome = () => {
     <div className="welcome-container">
       <h1>Ronnie and The Record Factory</h1>
       <img
-        src="https://th.bing.com/th/id/OIG.5ngK5xuaJ93T1stZXYTg?pid=ImgGn"
+        src="https://images.nightcafe.studio/jobs/l8RghaRWkKLme5bHqYNS/l8RghaRWkKLme5bHqYNS--1--nvlnb.jpg?tr=w-1600,c-at_max"
         alt="record factory"
       />
     </div>

@@ -1,8 +1,41 @@
 .album-detail-container {
   position: relative;
+  display: grid;
+  place-items: center;
+  margin-top: 2rem;
 }
+
+.album-details-image {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2rem;
+}
+
 .text-overlay {
   position: absolute;
-  left: 0;
   top: 0;
+  color: rgb(134, 196, 196);
+  background-color: rgb(37, 37, 37, 0.7);
+  height: 500px;
+  width: 500px;
+  font-family: "Satisfy", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 2rem;
+}
+
+.songs-list {
+  column-count: 2;
+}
+
+.details-btns {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+  place-items: center;
+}
+
+.details-btn {
+  margin-left: 60px;
+  margin-right: 60px;
 }
