@@ -44,10 +44,9 @@
   color: gray;
 }
 
-.genre-choices {
+.genre-select {
   font-family: sans-serif;
   font-size: 15px;
-  color: gray;
   background-color: rgb(134, 196, 196);
   border-radius: 3rem;
 }

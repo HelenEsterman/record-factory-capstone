@@ -73,7 +73,6 @@ export const NewAlbum = () => {
       window.alert("Input field empty, must complete form");
     }
   };
-
   return (
     <>
       <form className="album-form-container">
@@ -123,9 +122,12 @@ export const NewAlbum = () => {
             <select
               name="genreId"
               onChange={handleInputStateChanges}
-              className="genre-choices"
+              className="genre-select grayText"
+              onClick={(event) => {
+                event.target.className = "blackText";
+              }}
             >
-              <option value={0} key={0}>
+              <option className="grayText" value={0} key={0}>
                 Pick Your Genre
               </option>
               {genres.map((genre) => {

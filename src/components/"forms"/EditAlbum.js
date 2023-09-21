@@ -49,7 +49,9 @@ export const EditAlbum = () => {
       userId: currentAlbum.userId,
     };
 
-    postEditedAlbum(updatedAlbum.id, updatedAlbum).then(navigate(-1));
+    postEditedAlbum(updatedAlbum.id, updatedAlbum).then(
+      navigate(`/recordArchive/${currentAlbum.id}`)
+    );
   };
 
   return (

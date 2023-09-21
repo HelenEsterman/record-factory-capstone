@@ -17,7 +17,6 @@ export const RecordArchive = () => {
   }, []);
   return (
     <div className="records-container center-block">
-      {/* <h2>Record Archive</h2> */}
       <div className="album-list">
         {albums.map((albumObj) => {
           if (albumObj.userId === userId) {

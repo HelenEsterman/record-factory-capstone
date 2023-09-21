@@ -21,7 +21,7 @@ export const AlbumDetails = () => {
     const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
     const userId = userObj.id;
     setUserId(userId);
-  }, [albumId]);
+  }, [albumId, album]);
 
   const handleDelete = () => {
     deleteAlbum(albumId).then(navigate("/recordArchive"));
