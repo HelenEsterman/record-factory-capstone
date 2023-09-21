@@ -39,31 +39,50 @@ export const AlbumDetails = () => {
           height={500}
         />
         <div className="text-overlay">
-          <div>
-            <h1>"{album.name}"</h1>
-            <h2>{album.artistName}</h2>
-          </div>
+          <h1>
+            <i>"{album.name}"</i>
+          </h1>
+          <h2>{album.artistName}</h2>
           <div className="songs-list">
             <ul className="list-unstyled">
-              <li>"{album.song1}"</li>
-              <li>"{album.song2}"</li>
-              <li>"{album.song3}"</li>
-              <li>"{album.song4}"</li>
-              <li>"{album.song5}"</li>
-              <li>"{album.song6}"</li>
+              <li>
+                <p className="album-song">"{album.song1}"</p>
+              </li>
+              <li>
+                <p className="album-song">"{album.song2}"</p>
+              </li>
+              <li>
+                <p className="album-song">"{album.song3}"</p>
+              </li>
+            </ul>
+            <ul className="list-unstyled">
+              <li>
+                <p className="album-song">"{album.song4}"</p>
+              </li>
+              <li>
+                <p className="album-song">"{album.song5}"</p>
+              </li>
+              <li>
+                <p className="album-song">"{album.song6}"</p>
+              </li>
             </ul>
           </div>
-          <p>{genreObj?.name}</p>
+          <p className="genre-name">{genreObj?.name}</p>
         </div>
       </div>
       <div className="details-btns">
         <div className="details-btn">
-          <button onClick={() => navigate(`/recordArchive/${album.id}/edit`)}>
+          <button
+            className="edit-btn"
+            onClick={() => navigate(`/recordArchive/${album.id}/edit`)}
+          >
             Edit Album
           </button>
         </div>
         <div className="details-btn">
-          <button onClick={handleDelete}>Delete Album</button>
+          <button className="delete-btn" onClick={handleDelete}>
+            Delete Album
+          </button>
         </div>
       </div>
     </>

@@ -75,11 +75,11 @@ export const NewAlbum = () => {
   };
 
   return (
-    <div className="album-form">
+    <>
       <form className="album-form-container">
-        {/* <h2 className="album-title">Create Your Album</h2> */}
-        <fieldset>
-          <div className="album-info">
+        <div className="album-info">
+          <h1>Create Your Album</h1>
+          <fieldset>
             <label>
               Name of Your Album
               <input
@@ -91,10 +91,8 @@ export const NewAlbum = () => {
                 onChange={handleInputStateChanges}
               />
             </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
+          </fieldset>
+          <fieldset>
             <label>
               Album Cover Image URL
               <input
@@ -106,10 +104,8 @@ export const NewAlbum = () => {
                 onChange={handleInputStateChanges}
               />
             </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
+          </fieldset>
+          <fieldset>
             <label>
               Artist Name
               <input
@@ -121,101 +117,8 @@ export const NewAlbum = () => {
                 onChange={handleInputStateChanges}
               />
             </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 1
-              <input
-                className="input-field"
-                type="text"
-                name="song1"
-                value={newAlbum.song1}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 2
-              <input
-                className="input-field"
-                type="text"
-                name="song2"
-                value={newAlbum.song2}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 3
-              <input
-                className="input-field"
-                type="text"
-                name="song3"
-                value={newAlbum.song3}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 4
-              <input
-                className="input-field"
-                type="text"
-                name="song4"
-                value={newAlbum.song4}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 5
-              <input
-                className="input-field"
-                type="text"
-                name="song5"
-                value={newAlbum.song5}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="album-info">
-            <label>
-              Song 6
-              <input
-                className="input-field"
-                type="text"
-                name="song6"
-                value={newAlbum.song6}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <div className="album-info">
+          </fieldset>
+          <fieldset>
             <label>Genre</label>
             <select
               name="genreId"
@@ -237,12 +140,95 @@ export const NewAlbum = () => {
                 );
               })}
             </select>
-          </div>
-        </fieldset>
-        <button className="save-btn" onClick={handleSavingAlbum}>
-          Create Album
-        </button>
+          </fieldset>
+        </div>
+        <div className="song-info">
+          <label>Name Your Songs</label>
+          <fieldset>
+            <label>
+              1.
+              <input
+                className="input-field"
+                type="text"
+                name="song1"
+                value={newAlbum.song1}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              2.
+              <input
+                className="input-field"
+                type="text"
+                name="song2"
+                value={newAlbum.song2}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              3.
+              <input
+                className="input-field"
+                type="text"
+                name="song3"
+                value={newAlbum.song3}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              4.
+              <input
+                className="input-field"
+                type="text"
+                name="song4"
+                value={newAlbum.song4}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              5.
+              <input
+                className="input-field"
+                type="text"
+                name="song5"
+                value={newAlbum.song5}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              6.
+              <input
+                className="input-field"
+                type="text"
+                name="song6"
+                value={newAlbum.song6}
+                placeholder="enter song here"
+                onChange={handleInputStateChanges}
+              />
+            </label>
+          </fieldset>
+        </div>
+        <div className="save-btn-container">
+          <button className="save-btn" onClick={handleSavingAlbum}>
+            Create Album
+          </button>
+        </div>
       </form>
-    </div>
+    </>
   );
 };

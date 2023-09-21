@@ -1,66 +1,58 @@
-.album-form-container {
+.edit-form-container {
   padding: 5rem;
-  font-family: "Zeyada", sans-serif;
-  color: rgb(245, 187, 226);
-  font-size: 25px;
   display: grid;
+  font-family: "Zeyada", sans-serif;
+  color: rgb(134, 196, 196);
+  font-size: 25px;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 15rem;
   place-items: center;
 }
 
-.song-info {
+.edit-song-info {
   display: grid;
   grid-gap: 10px;
 }
 
-.album-info {
+.edit-album-info {
   display: grid;
   grid-gap: 10px;
   text-align: right;
   margin-top: -6rem;
 }
 
-.album-info > h1 {
+.edit-album-info > h1 {
   font-size: 80px;
   margin-top: 3rem;
 }
 
-.album-info > fieldset {
+.edit-album-info > fieldset {
   margin: 17px;
 }
 
-.input-field {
+.edit-input-field {
   font-family: sans-serif;
-  background-color: rgb(134, 196, 196);
+  background-color: rgb(245, 187, 226);
   border-radius: 3rem;
   font-size: 15px;
   color: black;
 }
 
-::placeholder {
+.edit-genres {
   font-family: sans-serif;
   font-size: 15px;
-  color: gray;
-}
-
-.genre-choices {
-  font-family: sans-serif;
-  font-size: 15px;
-  color: gray;
-  background-color: rgb(134, 196, 196);
+  color: black;
+  background-color: rgb(245, 187, 226);
   border-radius: 3rem;
 }
 
-.save-btn {
+.save-edit-btn {
   border-radius: 500rem;
-  background-color: rgb(245, 187, 226);
+  background-color: rgb(134, 196, 196);
   font-family: "Satisfy", sans-serif;
   height: 50px;
-  width: 150px;
+  width: 100px;
   position: fixed;
   bottom: 10px;
   right: 20px;
-  white-space: nowrap;
-  overflow: hidden;
 }
