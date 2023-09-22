@@ -124,7 +124,7 @@ export const EditAlbum = () => {
           <label>Edit Your Songs</label>
           <fieldset>
             <label>
-              1.
+              1.{" "}
               <input
                 className="edit-input-field"
                 type="text"

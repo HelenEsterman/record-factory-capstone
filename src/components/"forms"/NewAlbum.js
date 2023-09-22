@@ -148,7 +148,7 @@ export const NewAlbum = () => {
           <label>Name Your Songs</label>
           <fieldset>
             <label>
-              1.
+              1.{" "}
               <input
                 className="input-field"
                 type="text"
