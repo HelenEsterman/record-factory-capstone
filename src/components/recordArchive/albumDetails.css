@@ -69,10 +69,12 @@
   border-radius: 500rem;
   background-color: rgb(245, 187, 226);
   font-family: "Satisfy", sans-serif;
+  box-shadow: 4px 3px 10px rgb(134, 196, 196);
 }
 
 .edit-btn {
   border-radius: 500rem;
   background-color: rgb(134, 196, 196);
   font-family: "Satisfy", sans-serif;
+  box-shadow: 4px 3px 10px rgb(245, 187, 226);
 }
