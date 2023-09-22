@@ -1,4 +1,4 @@
-/*Reset Default Styling
+/* Reset Default Styling
 --------------------------------------------------------------*/
 /* html,
 body,
@@ -124,3 +124,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 } */
+
+.entire-application {
+  background-image: url("https://fixthephoto.com/images/content/fog-overlay1614254736.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}

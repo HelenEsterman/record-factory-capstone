@@ -1,0 +1,68 @@
+.album-form-container {
+  padding: 5rem;
+  font-family: "Zeyada", sans-serif;
+  color: rgb(245, 187, 226);
+  font-size: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 15rem;
+  place-items: center;
+}
+
+.song-info {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.album-info {
+  display: grid;
+  grid-gap: 10px;
+  text-align: right;
+  margin-top: -6rem;
+}
+
+.album-info > h1 {
+  font-size: 80px;
+  margin-top: 3rem;
+}
+
+.album-info > fieldset {
+  margin: 17px;
+}
+
+.input-field {
+  font-family: sans-serif;
+  background-color: rgb(134, 196, 196);
+  border-radius: 3rem;
+  font-size: 15px;
+  color: black;
+  box-shadow: 3px 2px 9px rgb(245, 187, 226);
+}
+
+::placeholder {
+  font-family: sans-serif;
+  font-size: 15px;
+  color: gray;
+}
+
+.genre-select {
+  font-family: sans-serif;
+  font-size: 15px;
+  background-color: rgb(134, 196, 196);
+  border-radius: 3rem;
+  box-shadow: 3px 2px 9px rgb(245, 187, 226);
+}
+
+.save-btn {
+  border-radius: 500rem;
+  background-color: rgb(245, 187, 226);
+  font-family: "Satisfy", sans-serif;
+  height: 50px;
+  width: 150px;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: 4px 3px 10px rgb(134, 196, 196);
+}

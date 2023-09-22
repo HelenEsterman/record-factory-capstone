@@ -1,32 +1,37 @@
-/* TODO not real NavBar.css taken from honey-raes to use as place holder to visualize and attach nav bar atm*/
-
 .nav-bar {
   display: flex;
   flex-wrap: nowrap;
-  background-color: gray;
-  margin: 0;
-  width: 100%;
+  margin: 0 auto;
+  width: 50%;
   padding: 0.5rem;
+  justify-content: space-between;
 }
 
 .navbar-item {
-  flex-basis: 20%;
   list-style-type: none;
   text-align: center;
   color: black;
   text-decoration: none;
+  flex-basis: 35%;
+  width: 10px;
 }
 
 .navbar-link {
   text-decoration: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: sans-serif;
   letter-spacing: 1px;
-}
-
-.navbar-logout {
-  margin-left: auto;
+  display: none;
+  color: rgb(245, 187, 226);
 }
 
 .navbar-link:hover {
-  color: var(--primary);
+  color: rgb(134, 196, 196);
+}
+
+.navbar-item:hover .navbar-link {
+  display: block;
+}
+
+.image {
+  border-radius: 55%;
 }

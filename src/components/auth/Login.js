@@ -29,34 +29,39 @@ export const Login = () => {
   };
 
   return (
-    <main className="auth-container">
-      <section>
-        <form className="auth-form" onSubmit={handleLogin}>
-          <h1 className="header">Record Factory</h1>{" "}
-          {/*TODO: change this when name is finalized */}
-          <h2>Please sign in</h2>
-          <fieldset className="auth-fieldset">
-            <div>
-              <input
-                type="email"
-                value={email}
-                className="auth-form-input"
-                onChange={(evt) => set(evt.target.value)}
-                placeholder="Email address"
-                required
-                autoFocus
-              />
-            </div>
-          </fieldset>
-          <fieldset className="auth-fieldset">
-            <div>
-              <button type="submit">Sign in</button>
-            </div>
-          </fieldset>
-        </form>
-      </section>
-      <section className="register-link">
-        <Link to="/register">Not a member yet?</Link>
+    <main className="auth-container center-block">
+      <section className="auth-box">
+        <section>
+          <form className="auth-form" onSubmit={handleLogin}>
+            <h1 className="header">Ronnie and The Record Factory</h1>
+            <h2>Please sign in</h2>
+            <fieldset className="auth-fieldset">
+              <div>
+                <input
+                  type="email"
+                  value={email}
+                  className="auth-form-input"
+                  onChange={(evt) => set(evt.target.value)}
+                  placeholder="Email address"
+                  required
+                  autoFocus
+                />
+              </div>
+            </fieldset>
+            <fieldset className="auth-fieldset">
+              <div>
+                <button type="submit" className="sign-in-btn">
+                  Sign in
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </section>
+        <section className="register-link">
+          <Link to="/register" className="register-link">
+            Not a member yet?
+          </Link>
+        </section>
       </section>
     </main>
   );
