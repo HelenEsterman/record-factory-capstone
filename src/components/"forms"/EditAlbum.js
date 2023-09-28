@@ -120,6 +120,7 @@ export const EditAlbum = () => {
             </select>
           </fieldset>
         </div>
+        {/*TODO: need to change song inputs to dynamic and not hard coded and will need to specify EP or LP album */}
         <div className="edit-song-info">
           <label>Edit Your Songs</label>
           <fieldset>

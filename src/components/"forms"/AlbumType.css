@@ -1,0 +1,29 @@
+/*TODO: NOT DONE WITH CSS***/
+.album-options {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.album-choices {
+  border-radius: 5rem;
+  background-color: rgb(134, 196, 196);
+  font-family: "Satisfy", sans-serif;
+  height: 300px;
+  width: 300px;
+  box-shadow: 4px 3px 10px rgb(245, 187, 226);
+  /* flex-basis: 15%; */
+  margin-top: 6rem;
+}
+
+.choose-one {
+  display: flex;
+  justify-content: center;
+  border: solid;
+  background-color: rgb(245, 187, 226);
+  box-shadow: 4px 3px 10px rgb(134, 196, 196);
+  font-family: "Satisfy", sans-serif;
+  border-radius: 1rem;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}

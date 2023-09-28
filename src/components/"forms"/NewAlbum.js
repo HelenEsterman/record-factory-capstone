@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
 import { postNewAlbum } from "../../data/albumData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./NewAlbum.css";
+import { getAlbumTypes } from "../../data/albumTypeData";
+import { SongInput } from "../songs/SongInput";
+import { PostSong } from "../../data/songData";
 
 export const NewAlbum = () => {
   const navigate = useNavigate();
+  const { typeId } = useParams();
+  const [albumTypes, setAlbumTypes] = useState([]);
   const [genres, setGenres] = useState([]);
   const [newAlbum, setNewAlbum] = useState({
     name: "",
     imgUrl: "",
     artistName: "",
-    song1: "",
-    song2: "",
-    song3: "",
-    song4: "",
-    song5: "",
-    song6: "",
     genreId: 0,
     userId: 0,
+    albumType: parseInt(typeId),
   });
 
   useEffect(() => {
     getGenres().then((genreArray) => {
       setGenres(genreArray);
+    });
+    getAlbumTypes().then((albumTypesArr) => {
+      setAlbumTypes(albumTypesArr);
     });
     const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
     const userId = userObj.id;
@@ -31,6 +34,14 @@ export const NewAlbum = () => {
     albumCopy.userId = userId;
     setNewAlbum(albumCopy);
   }, []);
+
+  //TODO: considering putting this function in JSX for the optional song inputs (3-6 for EP & 7-15 for LP)
+  // const songInputJSX = () => {
+  //   if (typeId === albumTypes[0].id) {
+  //     return <></>;
+  //   } else if (typeId === albumTypes[1].id) {
+  //   }
+  // };
 
   const handleInputStateChanges = (event) => {
     const albumCopy = { ...newAlbum };
@@ -44,12 +55,6 @@ export const NewAlbum = () => {
       newAlbum.name !== "" &&
       newAlbum.imgUrl !== "" &&
       newAlbum.artistName !== "" &&
-      newAlbum.song1 !== "" &&
-      newAlbum.song2 !== "" &&
-      newAlbum.song3 !== "" &&
-      newAlbum.song4 !== "" &&
-      newAlbum.song5 !== "" &&
-      newAlbum.song6 !== "" &&
       newAlbum.genreId > 0 &&
       newAlbum.userId > 0
     ) {
@@ -57,14 +62,9 @@ export const NewAlbum = () => {
         name: newAlbum.name,
         imgUrl: newAlbum.imgUrl,
         artistName: newAlbum.artistName,
-        song1: newAlbum.song1,
-        song2: newAlbum.song2,
-        song3: newAlbum.song3,
-        song4: newAlbum.song4,
-        song5: newAlbum.song5,
-        song6: newAlbum.song6,
         genreId: parseInt(newAlbum.genreId),
         userId: newAlbum.userId,
+        albumType: parseInt(typeId),
       };
       postNewAlbum(albumCopy).then(() => {
         navigate("/recordArchive");
@@ -73,6 +73,12 @@ export const NewAlbum = () => {
       window.alert("Input field empty, must complete form");
     }
   };
+
+  // const postSong = (songObj) => {
+  //   const songObjCopy = { ...songObj };
+  //   songObjCopy.albumId = newAlbum.id;
+  //   PostSong(songObjCopy);
+  // };
   return (
     <>
       <form className="album-form-container">
@@ -144,7 +150,13 @@ export const NewAlbum = () => {
             </select>
           </fieldset>
         </div>
+        {/*TODO: need to redo song inputs and make them dynamic instead of hard coded will probably need
+        to use useParams from albumType data for if id is 1 then songs have restraints and if id is 2 then songs have different restraints */}
         <div className="song-info">
+          <SongInput typeId={typeId} />
+        </div>
+        {/*albumTypes[0].id = 1 & albumTypes[1].id = 2 */}
+        {/* <div className="song-info">
           <label>Name Your Songs</label>
           <fieldset>
             <label>
@@ -224,7 +236,7 @@ export const NewAlbum = () => {
               />
             </label>
           </fieldset>
-        </div>
+        </div> */}
         <div className="save-btn-container">
           <button className="save-btn" onClick={handleSavingAlbum}>
             Create Album
