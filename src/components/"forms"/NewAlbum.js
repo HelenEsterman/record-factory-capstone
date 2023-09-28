@@ -4,8 +4,7 @@ import { postNewAlbum } from "../../data/albumData";
 import { useNavigate, useParams } from "react-router-dom";
 import "./NewAlbum.css";
 import { getAlbumTypes } from "../../data/albumTypeData";
-import { SongInput } from "../songs/SongInput";
-import { PostSong } from "../../data/songData";
+import { NewSongInput } from "../songs/NewSongInput";
 
 export const NewAlbum = () => {
   const navigate = useNavigate();
@@ -153,7 +152,7 @@ export const NewAlbum = () => {
         {/*TODO: need to redo song inputs and make them dynamic instead of hard coded will probably need
         to use useParams from albumType data for if id is 1 then songs have restraints and if id is 2 then songs have different restraints */}
         <div className="song-info">
-          <SongInput typeId={typeId} />
+          <NewSongInput typeId={typeId} />
         </div>
         {/*albumTypes[0].id = 1 & albumTypes[1].id = 2 */}
         {/* <div className="song-info">
