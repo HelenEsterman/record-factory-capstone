@@ -21,8 +21,13 @@ export const NewSongList = ({ newSong, albumId }) => {
             <li key={song.id}>
               "{song.name}"
               <button
-                onClick={() => {
-                  deleteSong(song.id).then();
+                onClick={(event) => {
+                  event.preventDefault();
+                  deleteSong(song.id).then(() => {
+                    setSongsOnNewAlbum(
+                      songsOnNewAlbum.filter((s) => s.id !== song.id)
+                    );
+                  });
                 }}
               >
                 Delete

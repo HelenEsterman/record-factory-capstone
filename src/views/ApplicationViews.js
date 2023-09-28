@@ -6,15 +6,17 @@ import { RecordArchive } from "../components/recordArchive/RecordArchive";
 import { AlbumDetails } from "../components/recordArchive/albumDetails";
 import { EditAlbum } from '../components/"forms"/EditAlbum';
 import { AlbumType } from '../components/"forms"/AlbumType';
+import { useState } from "react";
 
 export const ApplicationViews = () => {
+  const [showNavbar, setShowNavbar] = useState(true);
   return (
     <Routes>
       <Route
         path="/"
         element={
           <>
-            <NavBar /> <Outlet />
+            {showNavbar && <NavBar />} <Outlet />
           </>
         }
       >
@@ -22,7 +24,10 @@ export const ApplicationViews = () => {
         <Route index element={<Welcome />} />
         <Route path="/createAlbum">
           <Route index element={<AlbumType />} />
-          <Route path=":typeId" element={<NewAlbum />} />
+          <Route
+            path=":typeId"
+            element={<NewAlbum setShowNavbar={setShowNavbar} />}
+          />
         </Route>
         <Route path="/recordArchive">
           <Route index element={<RecordArchive />} />

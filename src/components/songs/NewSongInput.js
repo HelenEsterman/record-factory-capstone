@@ -16,8 +16,8 @@ export const NewSongInput = ({ typeId }) => {
     });
   }, []);
 
-  const albumBeforeCurrent = allAlbumsArray?.[allAlbumsArray.length - 1];
-  const albumId = albumBeforeCurrent?.id + 1;
+  const currentAlbum = allAlbumsArray?.[allAlbumsArray.length - 1];
+  const albumId = currentAlbum?.id;
 
   const handleSavingSong = (event) => {
     event.preventDefault();
@@ -45,7 +45,7 @@ export const NewSongInput = ({ typeId }) => {
           className="input-field"
           type="text"
           name="song"
-          value={newSong.name}
+          value={newSong?.name}
           onChange={(event) => {
             const newSongCopy = { ...newSong };
             newSongCopy.name = event.target.value;

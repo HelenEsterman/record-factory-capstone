@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
-import { postNewAlbum } from "../../data/albumData";
+import {
+  deleteAlbum,
+  getAllAlbums,
+  postEditedAlbum,
+  postNewAlbum,
+} from "../../data/albumData";
 import { useNavigate, useParams } from "react-router-dom";
 import "./NewAlbum.css";
 import { getAlbumTypes } from "../../data/albumTypeData";
 import { NewSongInput } from "../songs/NewSongInput";
 
-export const NewAlbum = () => {
+export const NewAlbum = ({ setShowNavbar }) => {
   const navigate = useNavigate();
   const { typeId } = useParams();
   const [albumTypes, setAlbumTypes] = useState([]);
   const [genres, setGenres] = useState([]);
+  // const [albumsArray, setAlbumsArray] = useState([]);
   const [newAlbum, setNewAlbum] = useState({
     name: "",
     imgUrl: "",
@@ -19,6 +25,13 @@ export const NewAlbum = () => {
     userId: 0,
     albumType: parseInt(typeId),
   });
+  useEffect(() => {
+    setShowNavbar(false);
+
+    return () => {
+      setShowNavbar(true);
+    };
+  }, [setShowNavbar]);
 
   useEffect(() => {
     getGenres().then((genreArray) => {
@@ -27,20 +40,12 @@ export const NewAlbum = () => {
     getAlbumTypes().then((albumTypesArr) => {
       setAlbumTypes(albumTypesArr);
     });
-    const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
-    const userId = userObj.id;
-    const albumCopy = { ...newAlbum };
-    albumCopy.userId = userId;
-    setNewAlbum(albumCopy);
+    getAllAlbums().then((albumsArr) => {
+      setNewAlbum(albumsArr[albumsArr.length - 1]);
+    });
   }, []);
 
   //TODO: considering putting this function in JSX for the optional song inputs (3-6 for EP & 7-15 for LP)
-  // const songInputJSX = () => {
-  //   if (typeId === albumTypes[0].id) {
-  //     return <></>;
-  //   } else if (typeId === albumTypes[1].id) {
-  //   }
-  // };
 
   const handleInputStateChanges = (event) => {
     const albumCopy = { ...newAlbum };
@@ -54,18 +59,19 @@ export const NewAlbum = () => {
       newAlbum.name !== "" &&
       newAlbum.imgUrl !== "" &&
       newAlbum.artistName !== "" &&
-      newAlbum.genreId > 0 &&
-      newAlbum.userId > 0
+      newAlbum.genreId > 0
     ) {
+      const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
+      const userId = userObj.id;
       const albumCopy = {
         name: newAlbum.name,
         imgUrl: newAlbum.imgUrl,
         artistName: newAlbum.artistName,
         genreId: parseInt(newAlbum.genreId),
-        userId: newAlbum.userId,
+        userId: userId,
         albumType: parseInt(typeId),
       };
-      postNewAlbum(albumCopy).then(() => {
+      postEditedAlbum(newAlbum.id, albumCopy).then(() => {
         navigate("/recordArchive");
       });
     } else {
@@ -73,11 +79,11 @@ export const NewAlbum = () => {
     }
   };
 
-  // const postSong = (songObj) => {
-  //   const songObjCopy = { ...songObj };
-  //   songObjCopy.albumId = newAlbum.id;
-  //   PostSong(songObjCopy);
-  // };
+  const handleCancelAlbum = (event) => {
+    event.preventDefault();
+    deleteAlbum(newAlbum.id).then(navigate("/"));
+  };
+
   return (
     <>
       <form className="album-form-container">
@@ -90,7 +96,7 @@ export const NewAlbum = () => {
                 className="input-field"
                 type="text"
                 name="name"
-                value={newAlbum.name}
+                value={newAlbum.name ? newAlbum.name : " "}
                 placeholder="enter album name"
                 onChange={handleInputStateChanges}
               />
@@ -103,7 +109,7 @@ export const NewAlbum = () => {
                 className="input-field"
                 type="text"
                 name="imgUrl"
-                value={newAlbum.imgUrl}
+                value={newAlbum.imgUrl ? newAlbum.imgUrl : " "}
                 placeholder="www.example.com"
                 onChange={handleInputStateChanges}
               />
@@ -116,7 +122,7 @@ export const NewAlbum = () => {
                 className="input-field"
                 type="text"
                 name="artistName"
-                value={newAlbum.artistName}
+                value={newAlbum.artistName ? newAlbum.artistName : " "}
                 placeholder="enter artist name"
                 onChange={handleInputStateChanges}
               />
@@ -135,11 +141,11 @@ export const NewAlbum = () => {
               <option className="grayText" value={0} key={0}>
                 Pick Your Genre
               </option>
-              {genres.map((genre) => {
+              {genres?.map((genre) => {
                 return (
                   <option
                     className="input-field"
-                    value={genre.id}
+                    value={genre?.id}
                     key={genre.id}
                   >
                     {genre.name}
@@ -239,6 +245,10 @@ export const NewAlbum = () => {
         <div className="save-btn-container">
           <button className="save-btn" onClick={handleSavingAlbum}>
             Create Album
+          </button>
+          {/*will need to add deleting album functionality as well as preventDefault and navigation back to home page */}
+          <button className="cancel-btn" onClick={handleCancelAlbum}>
+            Cancel
           </button>
         </div>
       </form>
