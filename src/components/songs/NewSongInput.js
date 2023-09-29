@@ -36,26 +36,47 @@ export const NewSongInput = ({ typeId }) => {
   // if(typeId===albumTypes[0].id){
   //
   //}else if (typeId===albumTypes[1].id){
-  //
+  // songsOnAlbumArray.length <= type.maxSong &&
+  //songsOnAlbumArray.length >= type.minSong &&
   //}
 
   const handleSavingSong = (event) => {
     event.preventDefault();
-    if (newSong.name !== "") {
-      const songCopy = {
-        name: newSong.name,
-        albumId: albumId,
-      };
-      PostSong(songCopy).then(() => {
-        setNewSong({
-          name: "",
-          albumId: 0,
+    if (typeId === epAlbum.id && newSong.name !== "") {
+      if (songsOnAlbumArray.length <= epAlbum.maxSong) {
+        const songCopy = {
+          name: newSong.name,
+          albumId: albumId,
+        };
+        PostSong(songCopy).then(() => {
+          setNewSong({
+            name: "",
+            albumId: 0,
+          });
         });
-      });
+      } else {
+        window.alert(
+          `${epAlbum.name} Albums MUST HAVE at least ${epAlbum.minSong} songs and at most ${epAlbum.maxSong} songs`
+        );
+      }
+    } else if (typeId === lpAlbum.id && newSong.name !== "") {
+      if (songsOnAlbumArray.length <= lpAlbum.maxSong) {
+        const songCopy = {
+          name: newSong.name,
+          albumId: albumId,
+        };
+        PostSong(songCopy).then(() => {
+          setNewSong({
+            name: "",
+            albumId: 0,
+          });
+        });
+      } else {
+        window.alert(
+          `${lpAlbum.name} Albums MUST HAVE at least ${lpAlbum.minSong} songs and at most ${lpAlbum.maxSong} songs`
+        );
+      }
     }
-    // } else {
-    //   window.alert("Create song");
-    // }
   };
 
   return (
@@ -82,19 +103,8 @@ export const NewSongInput = ({ typeId }) => {
                   }}
                 />
               </fieldset>
-              <button
-                onClick={
-                  /*TODO: the conditionals don't work here, they have to somehow be placed INSIDE handleSave function*/
-                  songsOnAlbumArray.length <= type.maxSong &&
-                  songsOnAlbumArray.length >= type.minSong
-                    ? handleSavingSong
-                    : window.alert(
-                        `${type.name} Albums MUST HAVE at least ${type.minSong} songs and at most ${type.maxSong} songs`
-                      )
-                }
-              >
-                Add Song
-              </button>
+              {/* TODO: the conditionals don't work here, they have to somehow be placed INSIDE handleSave function */}
+              <button onClick={handleSavingSong()}>Add Song</button>
               <NewSongList newSong={newSong} albumId={albumId} />
             </div>
           );
