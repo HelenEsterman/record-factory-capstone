@@ -103,8 +103,7 @@ export const NewSongInput = ({ typeId }) => {
                   }}
                 />
               </fieldset>
-              {/* TODO: the conditionals don't work here, they have to somehow be placed INSIDE handleSave function */}
-              <button onClick={handleSavingSong()}>Add Song</button>
+              <button>Add Song</button>
               <NewSongList newSong={newSong} albumId={albumId} />
             </div>
           );
