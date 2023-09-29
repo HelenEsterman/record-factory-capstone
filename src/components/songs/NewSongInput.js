@@ -30,7 +30,9 @@ export const NewSongInput = ({ typeId }) => {
       setSongsOnAlbumArray(songsArray);
     });
   }, [albumId]);
-
+  //TODO: not sure if we need these variables but something i'm testing out
+  const epAlbum = albumTypes[0];
+  const lpAlbum = albumTypes[1];
   // if(typeId===albumTypes[0].id){
   //
   //}else if (typeId===albumTypes[1].id){
@@ -50,9 +52,10 @@ export const NewSongInput = ({ typeId }) => {
           albumId: 0,
         });
       });
-    } else {
-      window.alert("Create song");
     }
+    // } else {
+    //   window.alert("Create song");
+    // }
   };
 
   return (
@@ -79,7 +82,19 @@ export const NewSongInput = ({ typeId }) => {
                   }}
                 />
               </fieldset>
-              <button onClick={handleSavingSong}>Add Song</button>
+              <button
+                onClick={
+                  /*TODO: the conditionals don't work here, they have to somehow be placed INSIDE handleSave function*/
+                  songsOnAlbumArray.length <= type.maxSong &&
+                  songsOnAlbumArray.length >= type.minSong
+                    ? handleSavingSong
+                    : window.alert(
+                        `${type.name} Albums MUST HAVE at least ${type.minSong} songs and at most ${type.maxSong} songs`
+                      )
+                }
+              >
+                Add Song
+              </button>
               <NewSongList newSong={newSong} albumId={albumId} />
             </div>
           );
