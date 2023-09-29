@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import { deleteSong, getSongsByAlbumId } from "../../data/songData";
 import { useNavigate } from "react-router-dom";
 
-export const NewSongList = ({ newSong, albumId }) => {
+export const NewSongList = ({ newSong, albumId, setSongsOnAlbum }) => {
   const [songsOnNewAlbum, setSongsOnNewAlbum] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     getSongsByAlbumId(albumId).then((songsArray) => {
       setSongsOnNewAlbum(songsArray);
+      setSongsOnAlbum(songsArray);
     });
-  }, [albumId, newSong]);
+  }, [albumId, newSong, setSongsOnAlbum]);
+
+  useEffect(() => {
+    getSongsByAlbumId(albumId).then((songsArray) => {
+      setSongsOnAlbum(songsArray);
+    });
+  }, [songsOnNewAlbum, albumId, setSongsOnAlbum]);
 
   return (
     <>

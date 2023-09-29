@@ -32,7 +32,10 @@ export const ApplicationViews = () => {
         <Route path="/recordArchive">
           <Route index element={<RecordArchive />} />
           <Route path=":albumId" element={<AlbumDetails />} />
-          <Route path=":albumId/edit" element={<EditAlbum />} />
+          <Route
+            path=":albumId/edit"
+            element={<EditAlbum setShowNavbar={setShowNavbar} />}
+          />
         </Route>
       </Route>
     </Routes>

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deleteAlbum, getAlbumsById } from "../../data/albumData";
 import { getGenres } from "../../data/genreData";
 import "./albumDetails.css";
+import { DetailsSongList } from "../songs/DetailsSongList";
 
 export const AlbumDetails = () => {
   const [album, setAlbum] = useState([]);
@@ -44,7 +45,8 @@ export const AlbumDetails = () => {
           </h1>
           <h2>{album.artistName}</h2>
           <div className="songs-list">
-            <ul className="list-unstyled">
+            <DetailsSongList />
+            {/* <ul className="list-unstyled">
               <li>
                 <p className="album-song">"{album.song1}"</p>
               </li>
@@ -65,7 +67,7 @@ export const AlbumDetails = () => {
               <li>
                 <p className="album-song">"{album.song6}"</p>
               </li>
-            </ul>
+            </ul> */}
           </div>
           <p className="genre-name">{genreObj?.name}</p>
         </div>

@@ -3,22 +3,41 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAlbumsById, postEditedAlbum } from "../../data/albumData";
 import { getGenres } from "../../data/genreData";
 import "./EditAlbum.css";
+import { NewSongInput } from "../songs/NewSongInput";
+import { getSongsByAlbumId } from "../../data/songData";
+import { getAlbumTypes } from "../../data/albumTypeData";
 
-export const EditAlbum = () => {
+export const EditAlbum = ({ setShowNavbar }) => {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const [genres, setGenres] = useState([]);
+  const [songsOnAlbum, setSongsOnAlbum] = useState([]);
+  const [albumTypes, setAlbumTypes] = useState([]);
   const { albumId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
+    setShowNavbar(false);
+
+    return () => {
+      setShowNavbar(true);
+    };
+  }, [setShowNavbar]);
+
+  useEffect(() => {
     getGenres().then((genreArray) => {
       setGenres(genreArray);
+    });
+    getAlbumTypes().then((typesArray) => {
+      setAlbumTypes(typesArray);
     });
   }, []);
 
   useEffect(() => {
     getAlbumsById(albumId).then((albumObj) => {
       setCurrentAlbum(albumObj);
+    });
+    getSongsByAlbumId(albumId).then((songsArray) => {
+      setSongsOnAlbum(songsArray);
     });
   }, [albumId]);
 
@@ -33,25 +52,59 @@ export const EditAlbum = () => {
 
   const handleNewAlbumSave = (event) => {
     event.preventDefault();
+    if (currentAlbum.albumType === albumTypes[0].id) {
+      if (
+        currentAlbum.name !== "" &&
+        currentAlbum.imgUrl !== "" &&
+        currentAlbum.artistName !== "" &&
+        currentAlbum.genreId > 0 &&
+        songsOnAlbum.length >= albumTypes[0].minSong
+      ) {
+        const updatedAlbum = {
+          id: currentAlbum.id,
+          name: currentAlbum.name,
+          imgUrl: currentAlbum.imgUrl,
+          artistName: currentAlbum.artistName,
+          genreId: currentAlbum.genreId,
+          userId: currentAlbum.userId,
+          albumType: currentAlbum.albumType,
+        };
 
-    const updatedAlbum = {
-      id: currentAlbum.id,
-      name: currentAlbum.name,
-      imgUrl: currentAlbum.imgUrl,
-      artistName: currentAlbum.artistName,
-      song1: currentAlbum.song1,
-      song2: currentAlbum.song2,
-      song3: currentAlbum.song3,
-      song4: currentAlbum.song4,
-      song5: currentAlbum.song5,
-      song6: currentAlbum.song6,
-      genreId: currentAlbum.genreId,
-      userId: currentAlbum.userId,
-    };
+        postEditedAlbum(updatedAlbum.id, updatedAlbum).then(
+          navigate(`/recordArchive/${currentAlbum.id}`)
+        );
+      } else {
+        window.alert(
+          "Input field empty or not enough songs, must complete form"
+        );
+      }
+    } else if (currentAlbum.albumType === albumTypes[1].id) {
+      if (
+        currentAlbum.name !== "" &&
+        currentAlbum.imgUrl !== "" &&
+        currentAlbum.artistName !== "" &&
+        currentAlbum.genreId > 0 &&
+        songsOnAlbum.length >= albumTypes[1].minSong
+      ) {
+        const updatedAlbum = {
+          id: currentAlbum.id,
+          name: currentAlbum.name,
+          imgUrl: currentAlbum.imgUrl,
+          artistName: currentAlbum.artistName,
+          genreId: currentAlbum.genreId,
+          userId: currentAlbum.userId,
+          albumType: currentAlbum.albumType,
+        };
 
-    postEditedAlbum(updatedAlbum.id, updatedAlbum).then(
-      navigate(`/recordArchive/${currentAlbum.id}`)
-    );
+        postEditedAlbum(updatedAlbum.id, updatedAlbum).then(
+          navigate(`/recordArchive/${currentAlbum.id}`)
+        );
+      } else {
+        window.alert(
+          "Input field empty or not enough songs, must complete form"
+        );
+      }
+    }
   };
 
   return (
@@ -120,9 +173,13 @@ export const EditAlbum = () => {
             </select>
           </fieldset>
         </div>
-        {/*TODO: need to change song inputs to dynamic and not hard coded and will need to specify EP or LP album */}
         <div className="edit-song-info">
-          <label>Edit Your Songs</label>
+          <NewSongInput
+            typeId={currentAlbum.albumType}
+            setSongsOnAlbum={setSongsOnAlbum}
+            albumId={albumId}
+          />
+          {/* <label>Edit Your Songs</label>
           <fieldset>
             <label>
               1.{" "}
@@ -200,7 +257,7 @@ export const EditAlbum = () => {
                 onChange={handleInputStateChanges}
               />
             </label>
-          </fieldset>
+          </fieldset> */}
         </div>
         <div className="save-edit-btn-container">
           <button className="save-edit-btn" onClick={handleNewAlbumSave}>
