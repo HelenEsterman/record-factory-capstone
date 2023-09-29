@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { getAllAlbums } from "../../data/albumData";
-import { PostSong } from "../../data/songData";
+import { PostSong, getSongsByAlbumId } from "../../data/songData";
 import { NewSongList } from "./NewSongList";
+import { getAlbumTypes } from "../../data/albumTypeData";
 
 export const NewSongInput = ({ typeId }) => {
   const [allAlbumsArray, setAllAlbumsArray] = useState([]);
+  const [songsOnAlbumArray, setSongsOnAlbumArray] = useState([]);
+  const [albumTypes, setAlbumTypes] = useState([]);
   const [newSong, setNewSong] = useState({
     name: "",
     albumId: 0,
@@ -14,10 +17,25 @@ export const NewSongInput = ({ typeId }) => {
     getAllAlbums().then((albumsArray) => {
       setAllAlbumsArray(albumsArray);
     });
+    getAlbumTypes().then((types) => {
+      setAlbumTypes(types);
+    });
   }, []);
 
   const currentAlbum = allAlbumsArray?.[allAlbumsArray.length - 1];
   const albumId = currentAlbum?.id;
+
+  useEffect(() => {
+    getSongsByAlbumId(albumId).then((songsArray) => {
+      setSongsOnAlbumArray(songsArray);
+    });
+  }, [albumId]);
+
+  // if(typeId===albumTypes[0].id){
+  //
+  //}else if (typeId===albumTypes[1].id){
+  //
+  //}
 
   const handleSavingSong = (event) => {
     event.preventDefault();
@@ -39,22 +57,34 @@ export const NewSongInput = ({ typeId }) => {
 
   return (
     <>
-      <label>Name Your Songs</label>
-      <fieldset>
-        <input
-          className="input-field"
-          type="text"
-          name="song"
-          value={newSong?.name}
-          onChange={(event) => {
-            const newSongCopy = { ...newSong };
-            newSongCopy.name = event.target.value;
-            setNewSong(newSongCopy);
-          }}
-        />
-      </fieldset>
-      <button onClick={handleSavingSong}>Add Song</button>
-      <NewSongList newSong={newSong} albumId={albumId} />
+      {albumTypes.map((type) => {
+        if (parseInt(typeId) === type.id) {
+          return (
+            <div key={type.id}>
+              <label>Name Your Songs</label>
+              <p>
+                {type.name} Albums can have {type.minSong}-{type.maxSong} songs
+                on them
+              </p>
+              <fieldset>
+                <input
+                  className="input-field"
+                  type="text"
+                  name="song"
+                  value={newSong?.name}
+                  onChange={(event) => {
+                    const newSongCopy = { ...newSong };
+                    newSongCopy.name = event.target.value;
+                    setNewSong(newSongCopy);
+                  }}
+                />
+              </fieldset>
+              <button onClick={handleSavingSong}>Add Song</button>
+              <NewSongList newSong={newSong} albumId={albumId} />
+            </div>
+          );
+        }
+      })}
     </>
   );
 };
