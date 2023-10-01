@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSongsByAlbumId } from "../../data/songData";
 import { useParams } from "react-router-dom";
+import "./DetailsSongList.css";
 
 export const DetailsSongList = () => {
   const [songsOnCurrentAlbum, setSongsOnCurrentAlbum] = useState([]);
@@ -13,12 +14,16 @@ export const DetailsSongList = () => {
   }, [albumId]);
 
   return (
-    <>
-      <ul>
+    <div className="song-list-container">
+      <ul className="song-listy">
         {songsOnCurrentAlbum.map((song) => {
-          return <li key={song.id}>"{song.name}"</li>;
+          return (
+            <li className="album-song" key={song.id}>
+              "{song.name}"
+            </li>
+          );
         })}
       </ul>
-    </>
+    </div>
   );
 };

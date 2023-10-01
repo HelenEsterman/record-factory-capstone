@@ -3,6 +3,7 @@ import { getAllAlbums } from "../../data/albumData";
 import { PostSong, getSongsByAlbumId } from "../../data/songData";
 import { NewSongList } from "./NewSongList";
 import { getAlbumTypes } from "../../data/albumTypeData";
+import "./NewSongInput.css";
 
 export const NewSongInput = ({ typeId, setSongsOnAlbum, albumId }) => {
   const [allAlbumsArray, setAllAlbumsArray] = useState([]);
@@ -21,9 +22,6 @@ export const NewSongInput = ({ typeId, setSongsOnAlbum, albumId }) => {
       setAlbumTypes(types);
     });
   }, []);
-
-  // const currentAlbum = allAlbumsArray?.[allAlbumsArray.length - 1];
-  // const albumId = currentAlbum?.id;
 
   useEffect(() => {
     getSongsByAlbumId(albumId).then((songsArray) => {
@@ -82,31 +80,44 @@ export const NewSongInput = ({ typeId, setSongsOnAlbum, albumId }) => {
       {albumTypes.map((type) => {
         if (parseInt(typeId) === type.id) {
           return (
-            <div key={type.id}>
-              <label>Name Your Songs</label>
-              <p>
-                {type.name} Albums can have {type.minSong}-{type.maxSong} songs
-                on them
-              </p>
-              <fieldset>
-                <input
-                  className="input-field"
-                  type="text"
-                  name="song"
-                  value={newSong?.name}
-                  onChange={(event) => {
-                    const newSongCopy = { ...newSong };
-                    newSongCopy.name = event.target.value;
-                    setNewSong(newSongCopy);
-                  }}
+            <div key={type.id} className="songs">
+              <label>Name Your Songs</label>({type.minSong}-{type.maxSong}{" "}
+              songs)
+              <div className="add-song-container">
+                <fieldset>
+                  <input
+                    className="input-field"
+                    type="text"
+                    name="song"
+                    placeholder="enter songs here"
+                    value={newSong?.name}
+                    onClick={(event) => {
+                      event.target.className = "blackText";
+                    }}
+                    onChange={(event) => {
+                      const newSongCopy = { ...newSong };
+                      newSongCopy.name = event.target.value;
+                      setNewSong(newSongCopy);
+                    }}
+                  />
+                </fieldset>
+                <button className="add-song-btn" onClick={handleSavingSong}>
+                  <div className="plus">
+                    +
+                    <i
+                      className="fa-solid fa-music"
+                      style={{ color: "rgb(181, 80, 103)" }}
+                    ></i>
+                  </div>
+                </button>
+              </div>
+              <div>
+                <NewSongList
+                  newSong={newSong}
+                  albumId={albumId}
+                  setSongsOnAlbum={setSongsOnAlbum}
                 />
-              </fieldset>
-              <button onClick={handleSavingSong}>Add Song</button>
-              <NewSongList
-                newSong={newSong}
-                albumId={albumId}
-                setSongsOnAlbum={setSongsOnAlbum}
-              />
+              </div>
             </div>
           );
         }

@@ -4,8 +4,6 @@ import "./AlbumType.css";
 import { useNavigate } from "react-router-dom";
 import { postNewAlbum } from "../../data/albumData";
 
-//TODO: NOT DONE WITH CSS***
-
 export const AlbumType = () => {
   const [albumTypes, setAlbumTypes] = useState([]);
   const navigate = useNavigate();
@@ -24,23 +22,25 @@ export const AlbumType = () => {
   };
 
   return (
-    <>
-      <div className="album-options">
-        {albumTypes.map((type) => {
-          return (
+    <div className="types-container">
+      {albumTypes.map((type) => {
+        return (
+          <div key={type.id} className="choices-container">
             <button
               className="album-choices"
+              id={type.id}
               key={type.id}
               onClick={() => {
                 createDefaultAlbumObj(type);
               }}
             >
-              {type.name}
+              <div className="choices-description">
+                {type.name} Album ({type.minSong}-{type.maxSong} songs)
+              </div>
             </button>
-          );
-        })}
-      </div>
-      <div className="choose-one">Choose One</div>
-    </>
+          </div>
+        );
+      })}
+    </div>
   );
 };

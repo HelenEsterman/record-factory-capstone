@@ -118,7 +118,7 @@ export const NewAlbum = ({ setShowNavbar }) => {
 
   const handleCancelAlbum = (event) => {
     event.preventDefault();
-    deleteAlbum(newAlbum.id).then(navigate("/"));
+    deleteAlbum(newAlbum.id).then(navigate(-1));
   };
 
   return (
@@ -128,39 +128,48 @@ export const NewAlbum = ({ setShowNavbar }) => {
           <h1>Create Your Album</h1>
           <fieldset>
             <label>
-              Name of Your Album
+              Name of Your Album {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="name"
-                value={newAlbum.name ? newAlbum.name : " "}
+                value={newAlbum.name ? newAlbum.name : ""}
                 placeholder="enter album name"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
           </fieldset>
           <fieldset>
             <label>
-              Album Cover Image URL
+              Album Cover Image URL {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="imgUrl"
-                value={newAlbum.imgUrl ? newAlbum.imgUrl : " "}
+                value={newAlbum.imgUrl ? newAlbum.imgUrl : ""}
                 placeholder="www.example.com"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
           </fieldset>
           <fieldset>
             <label>
-              Artist Name
+              Artist Name {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="artistName"
-                value={newAlbum.artistName ? newAlbum.artistName : " "}
+                value={newAlbum.artistName ? newAlbum.artistName : ""}
                 placeholder="enter artist name"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
@@ -172,7 +181,7 @@ export const NewAlbum = ({ setShowNavbar }) => {
               onChange={handleInputStateChanges}
               className="genre-select grayText"
               onClick={(event) => {
-                event.target.className = "blackText";
+                event.target.className = "genre-black-text";
               }}
             >
               <option className="grayText" value={0} key={0}>

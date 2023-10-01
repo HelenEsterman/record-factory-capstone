@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { deleteSong, getSongsByAlbumId } from "../../data/songData";
-import { useNavigate } from "react-router-dom";
+import "./NewSongList.css";
 
 export const NewSongList = ({ newSong, albumId, setSongsOnAlbum }) => {
   const [songsOnNewAlbum, setSongsOnNewAlbum] = useState([]);
@@ -20,13 +20,13 @@ export const NewSongList = ({ newSong, albumId, setSongsOnAlbum }) => {
 
   return (
     <>
-      <h1>Songs</h1>
       <ol>
         {songsOnNewAlbum.map((song) => {
           return (
-            <li key={song.id}>
+            <li key={song.id} className="list-of-songs">
               "{song.name}"
               <button
+                className="song-delete-btn"
                 onClick={(event) => {
                   event.preventDefault();
                   deleteSong(song.id).then(() => {
@@ -36,7 +36,9 @@ export const NewSongList = ({ newSong, albumId, setSongsOnAlbum }) => {
                   });
                 }}
               >
-                Delete
+                <div className="icon">
+                  <i className="fa-solid fa-trash-can"></i>
+                </div>
               </button>
             </li>
           );

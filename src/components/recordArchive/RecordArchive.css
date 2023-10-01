@@ -17,7 +17,8 @@
 }
 
 .album-name {
-  color: rgb(245, 187, 226);
+  color: rgb(181, 80, 103);
+  text-shadow: 1px 1px 1px black;
   font-size: 20px;
   font-family: "Satisfy", sans-serif;
   font-style: italic;
@@ -26,5 +27,5 @@
 
 .album-image {
   border-radius: 1rem;
-  box-shadow: 7px 7px 9px rgb(134, 196, 196);
+  box-shadow: 7px 7px 9px rgb(43, 76, 110);
 }
