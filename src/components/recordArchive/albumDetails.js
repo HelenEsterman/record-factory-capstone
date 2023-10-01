@@ -54,10 +54,10 @@ export const AlbumDetails = () => {
         <button
           className="back-btn"
           onClick={() => {
-            navigate(-1);
+            navigate("/recordArchive");
           }}
         >
-          Back
+          Back To Archive
         </button>
 
         <div className="details-btn">
