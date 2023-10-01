@@ -1,8 +1,8 @@
 /* .songs-list { */
 /* display: flex; */
-/* color: rgb(181, 80, 103);
+/* 
   height: 17rem;
-  white-space: nowrap;
+  
   font-size: 25px;
 
   display: grid;
@@ -39,14 +39,17 @@
 
 .song-list-container {
   display: grid;
-  grid-template-columns: repeat(
+  /* grid-template-columns: repeat(
     auto-fill,
     minmax(200px, 1fr)
-  ); /* Adjust the column width as needed */
+  ); Adjust the column width as needed */
   justify-content: center;
-  gap: 20px; /* Adjust the gap between columns */
+  /* gap: 20px; Adjust the gap between columns */
   max-width: 800px; /* Adjust the maximum width of the container */
   margin: 0 auto;
+  color: rgb(181, 80, 103);
+  height: 21rem;
+  text-shadow: 1px 1px 1px black;
 }
 
 .song-listy {
@@ -58,11 +61,13 @@
 }
 
 .album-song {
-  border: 1px solid #ccc; /* Add borders or other styling to individual items as needed */
-  padding: 10px;
+  /* border: 1px solid #ccc; Add borders or other styling to individual items as needed */
+  padding: 0.5px;
   text-align: center;
   flex-basis: calc(50% - 10px); /* Adjust item width for even columns */
   margin: 5px; /* Adjust margin as needed */
+  white-space: nowrap;
+  font-size: 21px;
 }
 
 @media (max-width: 400px) {

@@ -7,6 +7,8 @@ import { AlbumDetails } from "../components/recordArchive/albumDetails";
 import { EditAlbum } from '../components/"forms"/EditAlbum';
 import { AlbumType } from '../components/"forms"/AlbumType';
 import { useState } from "react";
+import { EpAlbumList } from "../components/recordArchive/EpAlbumList";
+import { LpAlbumList } from "../components/recordArchive/LpAlbumList";
 
 export const ApplicationViews = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -20,8 +22,9 @@ export const ApplicationViews = () => {
           </>
         }
       >
-        {/*TODO: need to add albumType component routing will most likely need useParams for ep/lp route */}
         <Route index element={<Welcome />} />
+        <Route path="/epAlbums" element={<EpAlbumList />} />
+        <Route path="/lpAlbums" element={<LpAlbumList />} />
         <Route path="/createAlbum">
           <Route index element={<AlbumType />} />
           <Route

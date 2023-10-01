@@ -51,17 +51,26 @@ export const AlbumDetails = () => {
         </div>
       </div>
       <div className="details-btns">
-        <div className="details-btn">
-          <button className="delete-btn" onClick={handleDelete}>
-            Delete Album
-          </button>
-        </div>
+        <button
+          className="back-btn"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Back
+        </button>
+
         <div className="details-btn">
           <button
             className="edit-btn"
             onClick={() => navigate(`/recordArchive/${album.id}/edit`)}
           >
             Edit Album
+          </button>
+        </div>
+        <div className="details-btn">
+          <button className="delete-btn" onClick={handleDelete}>
+            Delete Album
           </button>
         </div>
       </div>
