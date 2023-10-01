@@ -1,50 +1,6 @@
-/* .songs-list { */
-/* display: flex; */
-/* 
-  height: 17rem;
-  
-  font-size: 25px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); Two equal columns
-  gap: 1rem; Gap between the items
-  align-items: center; Vertically center the items
-} */
-
-/* .song-listy { */
-/* margin-right: -9.5rem;
-  margin-top: 0.5rem;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  list-style-type: none; */
-/* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between; */
-/* } */
-
-/* .album-song { */
-/* columns: 2;
-  column-fill: auto; */
-/* flex-basis: 20%; */
-/* margin-right: auto;
-  position: center;
-  justify-content: space-between; */
-
-/* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  justify-items: center;
-} */
-
 .song-list-container {
   display: grid;
-  /* grid-template-columns: repeat(
-    auto-fill,
-    minmax(200px, 1fr)
-  ); Adjust the column width as needed */
   justify-content: center;
-  /* gap: 20px; Adjust the gap between columns */
   max-width: 800px; /* Adjust the maximum width of the container */
   margin: 0 auto;
   color: rgb(181, 80, 103);
@@ -61,7 +17,6 @@
 }
 
 .album-song {
-  /* border: 1px solid #ccc; Add borders or other styling to individual items as needed */
   padding: 0.5px;
   text-align: center;
   flex-basis: calc(50% - 10px); /* Adjust item width for even columns */
