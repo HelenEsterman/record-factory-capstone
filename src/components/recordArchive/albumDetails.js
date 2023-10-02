@@ -41,9 +41,9 @@ export const AlbumDetails = () => {
         />
         <div className="text-overlay">
           <h1>
-            <i>"{album.name}"</i>
+            <i>{album.name}</i>
           </h1>
-          <h2>{album.artistName}</h2>
+          <h2>by {album.artistName}</h2>
           <div className="songs-list">
             <DetailsSongList />
           </div>

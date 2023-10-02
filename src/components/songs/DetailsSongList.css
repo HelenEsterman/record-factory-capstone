@@ -3,7 +3,7 @@
   justify-content: center;
   max-width: 800px; /* Adjust the maximum width of the container */
   margin: 0 auto;
-  color: rgb(181, 80, 103);
+  color: rgb(193, 123, 139);
   height: 21rem;
   text-shadow: 1px 1px 1px black;
 }
@@ -14,15 +14,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  margin-top: -0.7rem;
 }
 
 .album-song {
   padding: 0.5px;
   text-align: center;
   flex-basis: calc(50% - 10px); /* Adjust item width for even columns */
-  margin: 5px; /* Adjust margin as needed */
+  /* margin: 5px; Adjust margin as needed */
   white-space: nowrap;
-  font-size: 21px;
+  font-size: 1.8vw;
 }
 
 @media (max-width: 400px) {

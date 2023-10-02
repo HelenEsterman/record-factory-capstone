@@ -79,6 +79,10 @@ label {
   box-shadow: 4px 3px 10px rgb(181, 80, 103);
 }
 
+.save-btn:hover {
+  background-color: rgb(115, 133, 149);
+}
+
 .cancel-btn {
   border-radius: 500rem;
   background-color: rgb(181, 80, 103);
@@ -91,4 +95,8 @@ label {
   left: 20px;
 
   box-shadow: 4px 3px 10px rgb(43, 76, 110);
+}
+
+.cancel-btn:hover {
+  background-color: rgb(193, 123, 139);
 }

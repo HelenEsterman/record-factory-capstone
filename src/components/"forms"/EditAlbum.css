@@ -71,3 +71,7 @@ label {
   right: 20px;
   box-shadow: 4px 3px 10px rgb(245, 187, 226);
 }
+
+.save-edit-btn:hover {
+  background-color: rgb(115, 133, 149);
+}

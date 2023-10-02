@@ -53,6 +53,10 @@
   font-size: 20px;
 }
 
+.register-link:hover {
+  color: rgb(146, 168, 188);
+}
+
 .auth-fieldset {
   margin: 0.25rem 0rem;
   font-family: sans-serif;
@@ -62,4 +66,8 @@
   border-radius: 500rem;
   background-color: rgb(181, 80, 103);
   font-family: sans-serif;
+}
+
+.sign-in-btn:hover {
+  background-color: rgb(193, 123, 139);
 }
