@@ -116,6 +116,7 @@ export const NewSongInput = ({ typeId, setSongsOnAlbum, albumId }) => {
                   newSong={newSong}
                   albumId={albumId}
                   setSongsOnAlbum={setSongsOnAlbum}
+                  setSongsOnAlbumArray={setSongsOnAlbumArray}
                 />
               </div>
             </div>
