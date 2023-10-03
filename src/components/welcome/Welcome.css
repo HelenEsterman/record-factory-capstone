@@ -7,7 +7,8 @@
 .welcome-container > h1 {
   font-family: "Satisfy", sans-serif;
   font-size: 450%;
-  color: rgb(245, 187, 226);
+  color: rgb(181, 80, 103);
+  text-shadow: 5px 5px 5px black;
 }
 
 .welcome-container > img {

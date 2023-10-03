@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deleteAlbum, getAlbumsById } from "../../data/albumData";
 import { getGenres } from "../../data/genreData";
 import "./albumDetails.css";
+import { DetailsSongList } from "../songs/DetailsSongList";
 
 export const AlbumDetails = () => {
   const [album, setAlbum] = useState([]);
@@ -21,9 +22,9 @@ export const AlbumDetails = () => {
     const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
     const userId = userObj.id;
     setUserId(userId);
-  }, [albumId, album]);
+  }, [albumId]); //album- was causing infinite fetch call
 
-  const handleDelete = () => {
+  const handleDelete = (event) => {
     deleteAlbum(albumId).then(navigate("/recordArchive"));
   };
 
@@ -40,37 +41,25 @@ export const AlbumDetails = () => {
         />
         <div className="text-overlay">
           <h1>
-            <i>"{album.name}"</i>
+            <i>{album.name}</i>
           </h1>
-          <h2>{album.artistName}</h2>
+          <h2>by {album.artistName}</h2>
           <div className="songs-list">
-            <ul className="list-unstyled">
-              <li>
-                <p className="album-song">"{album.song1}"</p>
-              </li>
-              <li>
-                <p className="album-song">"{album.song2}"</p>
-              </li>
-              <li>
-                <p className="album-song">"{album.song3}"</p>
-              </li>
-            </ul>
-            <ul className="list-unstyled">
-              <li>
-                <p className="album-song">"{album.song4}"</p>
-              </li>
-              <li>
-                <p className="album-song">"{album.song5}"</p>
-              </li>
-              <li>
-                <p className="album-song">"{album.song6}"</p>
-              </li>
-            </ul>
+            <DetailsSongList />
           </div>
           <p className="genre-name">{genreObj?.name}</p>
         </div>
       </div>
       <div className="details-btns">
+        <button
+          className="back-btn"
+          onClick={() => {
+            navigate("/recordArchive");
+          }}
+        >
+          Back To Archive
+        </button>
+
         <div className="details-btn">
           <button
             className="edit-btn"

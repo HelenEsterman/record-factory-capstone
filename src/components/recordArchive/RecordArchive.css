@@ -1,6 +1,6 @@
 .records-container {
   margin-top: 15px;
-  margin-left: 155px;
+  margin-left: 20rem;
 }
 
 .album-list {
@@ -17,8 +17,9 @@
 }
 
 .album-name {
-  color: rgb(245, 187, 226);
-  font-size: 20px;
+  color: rgb(181, 80, 103);
+  text-shadow: 1px 1px 1px black;
+  font-size: 1.5vw;
   font-family: "Satisfy", sans-serif;
   font-style: italic;
   margin-top: 25px;
@@ -26,5 +27,5 @@
 
 .album-image {
   border-radius: 1rem;
-  box-shadow: 7px 7px 9px rgb(134, 196, 196);
+  box-shadow: 7px 7px 9px rgb(43, 76, 110);
 }

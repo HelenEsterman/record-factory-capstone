@@ -21,11 +21,11 @@
   font-family: sans-serif;
   letter-spacing: 1px;
   display: none;
-  color: rgb(245, 187, 226);
+  color: rgb(181, 80, 103);
 }
 
 .navbar-link:hover {
-  color: rgb(134, 196, 196);
+  color: rgb(43, 76, 110);
 }
 
 .navbar-item:hover .navbar-link {

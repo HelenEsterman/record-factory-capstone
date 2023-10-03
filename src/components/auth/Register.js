@@ -21,7 +21,6 @@ export const Register = (props) => {
           "record_factory_user",
           JSON.stringify({
             id: createdUser.id,
-            // staff: createdUser.isStaff, *i don't believe you have anything similar to this property in your object
           })
         );
 

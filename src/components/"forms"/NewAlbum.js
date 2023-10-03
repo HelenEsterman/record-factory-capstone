@@ -1,36 +1,57 @@
 import { useEffect, useState } from "react";
 import { getGenres } from "../../data/genreData";
-import { postNewAlbum } from "../../data/albumData";
-import { useNavigate } from "react-router-dom";
+import {
+  deleteAlbum,
+  getAllAlbums,
+  postEditedAlbum,
+} from "../../data/albumData";
+import { useNavigate, useParams } from "react-router-dom";
 import "./NewAlbum.css";
+import { getAlbumTypes } from "../../data/albumTypeData";
+import { NewSongInput } from "../songs/NewSongInput";
+import { getSongsByAlbumId } from "../../data/songData";
 
-export const NewAlbum = () => {
+export const NewAlbum = ({ setShowNavbar }) => {
   const navigate = useNavigate();
+  const { typeId } = useParams();
+  const [albumId, setAlbumId] = useState();
+  const [albumTypes, setAlbumTypes] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [songsOnAlbum, setSongsOnAlbum] = useState([]);
   const [newAlbum, setNewAlbum] = useState({
     name: "",
     imgUrl: "",
     artistName: "",
-    song1: "",
-    song2: "",
-    song3: "",
-    song4: "",
-    song5: "",
-    song6: "",
     genreId: 0,
     userId: 0,
+    albumType: parseInt(typeId),
   });
+  useEffect(() => {
+    setShowNavbar(false);
+
+    return () => {
+      setShowNavbar(true);
+    };
+  }, [setShowNavbar]);
 
   useEffect(() => {
     getGenres().then((genreArray) => {
       setGenres(genreArray);
     });
-    const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
-    const userId = userObj.id;
-    const albumCopy = { ...newAlbum };
-    albumCopy.userId = userId;
-    setNewAlbum(albumCopy);
+    getAlbumTypes().then((albumTypesArr) => {
+      setAlbumTypes(albumTypesArr);
+    });
+    getAllAlbums().then((albumsArr) => {
+      setNewAlbum(albumsArr[albumsArr.length - 1]);
+    });
   }, []);
+
+  useEffect(() => {
+    getSongsByAlbumId(newAlbum.id).then((songArray) => {
+      setSongsOnAlbum(songArray);
+    });
+    setAlbumId(newAlbum.id);
+  }, [newAlbum]);
 
   const handleInputStateChanges = (event) => {
     const albumCopy = { ...newAlbum };
@@ -40,39 +61,66 @@ export const NewAlbum = () => {
 
   const handleSavingAlbum = (event) => {
     event.preventDefault();
-    if (
-      newAlbum.name !== "" &&
-      newAlbum.imgUrl !== "" &&
-      newAlbum.artistName !== "" &&
-      newAlbum.song1 !== "" &&
-      newAlbum.song2 !== "" &&
-      newAlbum.song3 !== "" &&
-      newAlbum.song4 !== "" &&
-      newAlbum.song5 !== "" &&
-      newAlbum.song6 !== "" &&
-      newAlbum.genreId > 0 &&
-      newAlbum.userId > 0
-    ) {
-      const albumCopy = {
-        name: newAlbum.name,
-        imgUrl: newAlbum.imgUrl,
-        artistName: newAlbum.artistName,
-        song1: newAlbum.song1,
-        song2: newAlbum.song2,
-        song3: newAlbum.song3,
-        song4: newAlbum.song4,
-        song5: newAlbum.song5,
-        song6: newAlbum.song6,
-        genreId: parseInt(newAlbum.genreId),
-        userId: newAlbum.userId,
-      };
-      postNewAlbum(albumCopy).then(() => {
-        navigate("/recordArchive");
-      });
-    } else {
-      window.alert("Input field empty, must complete form");
+    if (parseInt(typeId) === albumTypes[0].id) {
+      if (
+        newAlbum.name !== "" &&
+        newAlbum.imgUrl !== "" &&
+        newAlbum.artistName !== "" &&
+        newAlbum.genreId > 0 &&
+        songsOnAlbum.length >= albumTypes[0].minSong
+      ) {
+        const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
+        const userId = userObj.id;
+        const albumCopy = {
+          name: newAlbum.name,
+          imgUrl: newAlbum.imgUrl,
+          artistName: newAlbum.artistName,
+          genreId: parseInt(newAlbum.genreId),
+          userId: userId,
+          albumType: parseInt(typeId),
+        };
+        postEditedAlbum(newAlbum.id, albumCopy).then(() => {
+          navigate("/recordArchive");
+        });
+      } else {
+        window.alert(
+          "Input field empty or not enough songs, must complete form"
+        );
+      }
+    } else if (parseInt(typeId) === albumTypes[1].id) {
+      if (
+        newAlbum.name !== "" &&
+        newAlbum.imgUrl !== "" &&
+        newAlbum.artistName !== "" &&
+        newAlbum.genreId > 0 &&
+        songsOnAlbum.length >= albumTypes[1].minSong
+      ) {
+        const userObj = JSON.parse(localStorage.getItem("record_factory_user"));
+        const userId = userObj.id;
+        const albumCopy = {
+          name: newAlbum.name,
+          imgUrl: newAlbum.imgUrl,
+          artistName: newAlbum.artistName,
+          genreId: parseInt(newAlbum.genreId),
+          userId: userId,
+          albumType: parseInt(typeId),
+        };
+        postEditedAlbum(newAlbum.id, albumCopy).then(() => {
+          navigate("/recordArchive");
+        });
+      } else {
+        window.alert(
+          "Input field empty or not enough songs, must complete form"
+        );
+      }
     }
   };
+
+  const handleCancelAlbum = (event) => {
+    event.preventDefault();
+    deleteAlbum(newAlbum.id).then(navigate(-1));
+  };
+
   return (
     <>
       <form className="album-form-container">
@@ -80,39 +128,48 @@ export const NewAlbum = () => {
           <h1>Create Your Album</h1>
           <fieldset>
             <label>
-              Name of Your Album
+              Name of Your Album {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="name"
-                value={newAlbum.name}
+                value={newAlbum.name ? newAlbum.name : ""}
                 placeholder="enter album name"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
           </fieldset>
           <fieldset>
             <label>
-              Album Cover Image URL
+              Album Cover Image URL {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="imgUrl"
-                value={newAlbum.imgUrl}
+                value={newAlbum.imgUrl ? newAlbum.imgUrl : ""}
                 placeholder="www.example.com"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
           </fieldset>
           <fieldset>
             <label>
-              Artist Name
+              Artist Name {"     "}
               <input
-                className="input-field"
+                className="input-field af"
                 type="text"
                 name="artistName"
-                value={newAlbum.artistName}
+                value={newAlbum.artistName ? newAlbum.artistName : ""}
                 placeholder="enter artist name"
+                onClick={(event) => {
+                  event.target.className = "blackText af";
+                }}
                 onChange={handleInputStateChanges}
               />
             </label>
@@ -124,17 +181,17 @@ export const NewAlbum = () => {
               onChange={handleInputStateChanges}
               className="genre-select grayText"
               onClick={(event) => {
-                event.target.className = "blackText";
+                event.target.className = "genre-black-text";
               }}
             >
               <option className="grayText" value={0} key={0}>
                 Pick Your Genre
               </option>
-              {genres.map((genre) => {
+              {genres?.map((genre) => {
                 return (
                   <option
                     className="input-field"
-                    value={genre.id}
+                    value={genre?.id}
                     key={genre.id}
                   >
                     {genre.name}
@@ -145,89 +202,18 @@ export const NewAlbum = () => {
           </fieldset>
         </div>
         <div className="song-info">
-          <label>Name Your Songs</label>
-          <fieldset>
-            <label>
-              1.{" "}
-              <input
-                className="input-field"
-                type="text"
-                name="song1"
-                value={newAlbum.song1}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              2.
-              <input
-                className="input-field"
-                type="text"
-                name="song2"
-                value={newAlbum.song2}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              3.
-              <input
-                className="input-field"
-                type="text"
-                name="song3"
-                value={newAlbum.song3}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              4.
-              <input
-                className="input-field"
-                type="text"
-                name="song4"
-                value={newAlbum.song4}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              5.
-              <input
-                className="input-field"
-                type="text"
-                name="song5"
-                value={newAlbum.song5}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              6.
-              <input
-                className="input-field"
-                type="text"
-                name="song6"
-                value={newAlbum.song6}
-                placeholder="enter song here"
-                onChange={handleInputStateChanges}
-              />
-            </label>
-          </fieldset>
+          <NewSongInput
+            typeId={typeId}
+            setSongsOnAlbum={setSongsOnAlbum}
+            albumId={albumId}
+          />
         </div>
         <div className="save-btn-container">
           <button className="save-btn" onClick={handleSavingAlbum}>
             Create Album
+          </button>
+          <button className="cancel-btn" onClick={handleCancelAlbum}>
+            Cancel
           </button>
         </div>
       </form>

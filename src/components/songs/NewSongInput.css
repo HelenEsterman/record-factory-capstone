@@ -1,0 +1,21 @@
+.songs {
+  text-align: center;
+  position: sticky;
+  top: 10rem;
+  left: 60rem;
+}
+
+.add-song-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.plus {
+  color: rgb(181, 80, 103);
+  font-size: 30px;
+}
+
+.add-song-btn {
+  background: none;
+  border: none;
+}

@@ -1,0 +1,17 @@
+.song-delete-btn {
+  background: none;
+  border: none;
+}
+
+.minus {
+  color: rgb(181, 80, 103);
+  font-size: 30px;
+}
+
+.icon {
+  color: rgb(43, 76, 110);
+}
+
+.list-of-songs {
+  text-align: left;
+}

@@ -12,13 +12,14 @@
 .auth-box {
   background-color: rgb(37, 37, 37, 0.8);
   padding-top: 200px;
-  padding-bottom: 300px;
+  padding-bottom: 500px;
 }
 
 .header {
   font-size: 2rem;
   font-family: "Satisfy", sans-serif;
-  color: rgb(245, 187, 226);
+  color: rgb(181, 80, 103);
+  text-shadow: 1px 1px 1px black;
 }
 
 .auth-form > h1 {
@@ -31,20 +32,29 @@
   flex-direction: column;
   align-items: center;
   font-family: "Zeyada", sans-serif;
-  color: rgb(245, 187, 226);
+  color: rgb(177, 112, 127);
+  text-shadow: 1px 1px 1px black;
+  margin-top: -6rem;
 }
 
 .auth-form-input {
   padding: 0.25rem;
   font-family: sans-serif;
   border-radius: 500rem;
-  background-color: rgb(134, 196, 196);
+  background-color: rgb(43, 76, 110);
 }
 
 .register-link {
   text-align: center;
   text-decoration: none;
-  color: rgb(134, 196, 196);
+  color: rgb(43, 76, 110);
+  text-shadow: 1px 1px 1px black;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.register-link:hover {
+  color: rgb(146, 168, 188);
 }
 
 .auth-fieldset {
@@ -54,6 +64,10 @@
 
 .sign-in-btn {
   border-radius: 500rem;
-  background-color: rgb(245, 187, 226);
+  background-color: rgb(181, 80, 103);
   font-family: sans-serif;
+}
+
+.sign-in-btn:hover {
+  background-color: rgb(193, 123, 139);
 }
