@@ -50,7 +50,7 @@ export const LpAlbumList = () => {
                   />
                 </Link>
 
-                <div className="album-name">"{albumObj.name}"</div>
+                <div className="album-name">{albumObj.name}</div>
               </div>
             );
           }
