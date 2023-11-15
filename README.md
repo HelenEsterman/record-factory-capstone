@@ -10,7 +10,7 @@
   8. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
   9. next cd into the proper directory by running `cd record-capstone-api`
   10. run `json-server database.json -p 8088 -w!` in your terminal in this directory to start the json server
-  11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
+  11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums already in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
   12. once logged in, begin creating your album!
 ## Website Functionality
   - given the user wants to create an album, when they click on the "create album" nav bar link, then the user will be taken to a screen that shows the option of an EP or an LP album
