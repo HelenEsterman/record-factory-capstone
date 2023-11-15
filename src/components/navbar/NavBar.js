@@ -20,7 +20,7 @@ export const NavBar = () => {
       <li className="navbar-item">
         <img
           className="image"
-          src="https://media.tenor.com/YN7bkFSEtwcAAAAM/good-music-tom-and-jerry.gif"
+          src="https://media.tenor.com/YN7bkFSEtwcAAAAC/good-music-tom-and-jerry.gif"
           alt="jerry the mouse listening to music with headphones on"
           width={70}
           height={70}
