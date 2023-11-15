@@ -1,18 +1,18 @@
-## Record Capstone ReadMe
-# Steps to Test
+# Record Capstone ReadMe
+## Steps to Test
   1. click on the `code` button at the top of the repository
   2. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
   3. next cd into the proper directory by running `cd record-factory-capstone`
-  4. run `npm install` in your terminal
+  4. run `npm install` in your terminal in this directory
   5. and then `npm start` to deploy the website onto the browser
   6. next follow the link to this repository https://github.com/HelenEsterman/record-capstone-api
   7. click on the `code` button at the top of this repository
   8. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
   9. next cd into the proper directory by running `cd record-capstone-api`
-  10. run `json-server database.json -p 8088 -w!` in your terminal to start the json server
-  11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
+  10. run `json-server database.json -p 8088 -w!` in your terminal in this directory to start the json server
+  11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums already in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
   12. once logged in, begin creating your album!
-# Website Functionality
+## Website Functionality
   - given the user wants to create an album, when they click on the "create album" nav bar link, then the user will be taken to a screen that shows the option of an EP or an LP album
   - given the user wants to create an album with only 3-6 songs, when they click the EP album button, then the browser will take them to a form where they can put in the information they want on their album and have the ability to create no less than 3 songs and no more than 6
   - given the user wants to create an album with 7-15 songs, when they click the LP album button, then the browser will take them to a form where they can put in the information they want on their album and have the ability to create no less than 7 songs and no more than 15
@@ -23,7 +23,13 @@
   - given the user wants to save their album, when they click the "create album" button, then their album will be saved in the database and the browser will take the user to the "record archive" view which has a collection of every album this specific user has created including the album that was just created
   - given the user wants to view their record archive page withou creating a new album, when the user clicks the "record archive" nav bar link, then the browser will take them to a page where they can see all the albums they've created along with two buttons labled EP and LP
   - given the user wants to only see LP albums, when the user clicks on the "LP" album button, then the albums will be filtered down by only the albums labeled LP (same goes for EP albums)
-# Project Goals
+  - given the user wants to see the details of a specific album, when a user clicks on an album cover image, then the browser will take them to a new page where they can view how the details of the album actually look displayed on the album cover image
+  - given the user is on the album details page and wants to go back to the record archive view, when they click the "back to archive" button, then the user will be taken back to the full archive
+  - given the user wants to delete their album, when the user goes to the "album details" page and clicks the "delete" button, then the album will be deleted from the database and the browser will rerender the "record archive view"
+  - given the user wants to make changes to their album, when the user clicks the "edit" button on the "album details" page, then the browser will take the user to an "edit album" form, this page has basically the same functionality as the "create album" page (for ex. user cannot create albums that don't fit the song requirements (EP: 3-6, LP: 7-15), user cannot create album with blank fields, and user has ability to add and delete songs)
+  - given the user wants to save their edited album, when the user clicks "save album", then the album will be updated in the database and the browser will render the "album details" page again for that specific album showing the updated details changed
+  - given the user is done using the application, when they click the "logout" nav bar link, then the user will be taken back to the login page
+## Project Goals
   - Build and application where a user can create made up albums for fun and have full creative freedom
   - Create Login page where users have to authenticate before entering the website
   - Authentication page will ensure that users only have access to their specific albums and therefore can only make changes with the data associated with them
