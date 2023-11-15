@@ -3,13 +3,13 @@
   1. click on the `code` button at the top of the repository
   2. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
   3. next cd into the proper directory by running `cd record-factory-capstone`
-  4. run `npm install` in your terminal
+  4. run `npm install` in your terminal in this directory
   5. and then `npm start` to deploy the website onto the browser
   6. next follow the link to this repository https://github.com/HelenEsterman/record-capstone-api
   7. click on the `code` button at the top of this repository
   8. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
   9. next cd into the proper directory by running `cd record-capstone-api`
-  10. run `json-server database.json -p 8088 -w!` in your terminal to start the json server
+  10. run `json-server database.json -p 8088 -w!` in your terminal in this directory to start the json server
   11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
   12. once logged in, begin creating your album!
 ## Website Functionality
