@@ -6,6 +6,23 @@
   4. run `npm install` in your terminal
   5. and then `npm start` to deploy the website onto the browser
   6. next follow the link to this repository https://github.com/HelenEsterman/record-capstone-api
+  7. click on the `code` button at the top of this repository
+  8. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
+  9. next cd into the proper directory by running `cd record-capstone-api`
+  10. run `json-server database.json -p 8088 -w!` in your terminal to start the json server
+  11. log in with the email address artlover@creativity.com to see an example of a user with multiple albums in their record archive or register with your own name and email address by selecting the "Not a Member Yet?" button
+  12. once logged in, begin creating your album!
+# Website Functionality
+  - given the user wants to create an album, when they click on the "create album" nav bar link, then the user will be taken to a screen that shows the option of an EP or an LP album
+  - given the user wants to create an album with only 3-6 songs, when they click the EP album button, then the browser will take them to a form where they can put in the information they want on their album and have the ability to create no less than 3 songs and no more than 6
+  - given the user wants to create an album with 7-15 songs, when they click the LP album button, then the browser will take them to a form where they can put in the information they want on their album and have the ability to create no less than 7 songs and no more than 15
+  - given the user changes their mind an wants to create an EP album instead of an LP album and vice versa, when the user clicks the "cancel" button, then the user will be taken back to the page with the options of LP and EP albums
+  - given the user tries to save an EP album that has less than 3 songs or an LP album that has less than 7 songs, or given the user tries to save an album by leaving one or more fields blank, when the user attempts to click the button "create album", then a window alert will pop up informing the user that they are missing an input field or they don't have enough songs
+  - given the user tries to add more than 6 songs on an EP album and more then 15 songs on an LP, when the user attempts to add that extra song by clicking the button with a plus sign and a music note, a window alert will appear informing the user that they have too many songs and will need to delete one before continuing
+  - given the user wants to delete a song they don't like, when the user clicks the delete button next to the song, then the song will be removed from the song list
+  - given the user wants to save their album, when they click the "create album" button, then their album will be saved in the database and the browser will take the user to the "record archive" view which has a collection of every album this specific user has created including the album that was just created
+  - given the user wants to view their record archive page withou creating a new album, when the user clicks the "record archive" nav bar link, then the browser will take them to a page where they can see all the albums they've created along with two buttons labled EP and LP
+  - given the user wants to only see LP albums, when the user clicks on the "LP" album button, then the albums will be filtered down by only the albums labeled LP (same goes for EP albums)
 # Project Goals
   - Build and application where a user can create made up albums for fun and have full creative freedom
   - Create Login page where users have to authenticate before entering the website
