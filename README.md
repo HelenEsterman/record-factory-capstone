@@ -5,7 +5,7 @@
   3. next cd into the proper directory by running `cd record-factory-capstone`
   4. run `npm install` in your terminal
   5. and then `npm start` to deploy the website onto the browser
-  6. the browser should 
+  6. next follow the link to this repository https://github.com/HelenEsterman/record-capstone-api
 # Project Goals
   - Build and application where a user can create made up albums for fun and have full creative freedom
   - Create Login page where users have to authenticate before entering the website
