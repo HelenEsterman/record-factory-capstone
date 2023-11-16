@@ -1,6 +1,6 @@
 # Record Capstone ReadMe
 ## Video Walkthrough of Application
-https://www.loom.com/share/1b491132ead648fd8f201178c22aa4ec
+[https://www.loom.com/share/1b491132ead648fd8f201178c22aa4ec](https://www.loom.com/share/1b491132ead648fd8f201178c22aa4ec)
 ## Steps to Test
   1. click on the `code` button at the top of the repository
   2. make sure `SSH` is selected as the proper key, copy the link and run `git clone [the link copied]` in your terminal
